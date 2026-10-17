@@ -256,7 +256,7 @@ const PHONE = "+79966889979";            // телефон для ссылки (
 const PHONE_SHOW = "+7 (996) 688-99-79"; // как телефон выглядит на сайте
 const WA = "79966889979";                // WhatsApp: номер без плюса
 const LEAD_URL = "https://stroykompas-zayavk.shamanvaliev07.workers.dev"; // адрес вашего Cloudflare Worker для заявок
-const TG = "@Stroykompas86_bot";              // Telegram без @
+const TG = "Stroykompas86_bot";              // Telegram без @
 
 // Услуги и цены за м² (динамически подтягиваются в калькулятор)
 const WORKS = [
@@ -306,5 +306,53 @@ document.addEventListener("DOMContentLoaded", function () {
     prepCheckbox.addEventListener("change", calculate);
 
     calculate();
+  // Обработка отправки формы заявки (в Telegram + перенаправление в WhatsApp)
+document.getElementById("lead").addEventListener("submit", function(e) {
+    e.preventDefault(); // Останавливаем стандартную перезагрузку страницы
+    
+    const form = this;
+    const name = form.elements["name"].value;
+    const phone = form.elements["phone"].value;
+    const note = form.elements["note"].value || "Не указано";
+    
+    // Получаем текущие данные из калькулятора
+    const workSelect = document.getElementById("workType");
+    const selectedWorkText = workSelect.options[workSelect.selectedIndex].text;
+    const area = document.getElementById("area").value;
+    const totalPrice = document.getElementById("totalPrice").textContent;
+
+    // 1. Формируем красивый текст для сообщения
+    const textMessage = `🚀 Новая заявка с сайта Строй Компас!\n\n` +
+                        `👤 Имя: ${name}\n` +
+                        `📞 Телефон: ${phone}\n` +
+                        `🛠 Работа: ${selectedWorkText}\n` +
+                        `📐 Площадь: ${area} м²\n` +
+                        `💰 Предварительная цена: ${totalPrice} ₽\n` +
+                        `📝 Комментарий: ${note}`;
+
+    // 2. Отправляем скрытый запрос в ваш Telegram (Cloudflare Worker)
+    fetch(LEAD_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            name: name,
+            phone: phone,
+            note: `Выбрано: ${selectedWorkText}, Площадь: ${area}м², Цена: ${totalPrice}₽. Комментарий: ${note}`
+        })
+    }).catch(err => console.log("Ошибка отправки в Telegram, но мы дублируем в WA"));
+
+    // 3. Мгновенно открываем WhatsApp с готовым текстом сообщения
+    // Используем переменную WA, которая уже создана у вас в настройках выше
+    const waUrl = `https://wa.me{WA}?text=${encodeURIComponent(textMessage)}`;
+    
+    // Очищаем форму и открываем WhatsApp
+    form.reset();
+    document.getElementById("fmsg").innerHTML = "<p style='color:green; font-weight:bold;'>Заявка создана! Перенаправляем в WhatsApp...</p>";
+    
+    setTimeout(() => {
+        window.location.href = waUrl;
+    }, 1000);
+});
+
 });
 </script>
