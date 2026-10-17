@@ -71,6 +71,11 @@ details p{margin:10px 0 0;color:var(--muted)}
 .contact{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
 .phone{font-family:Unbounded,sans-serif;font-size:clamp(24px,5vw,38px);font-weight:600;text-decoration:none;display:block;margin:12px 0 18px}
 footer{border-top:1px solid var(--line);padding:24px 0 96px;color:var(--muted);font-size:15px}
+.lead-form{display:grid;gap:12px;max-width:520px}
+.lead-form input,.lead-form textarea{width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit}
+.lead-form small{color:var(--muted)}
+.hp{position:absolute;left:-9999px}
+#fmsg{font-weight:500}
 .gal{column-count:3;column-gap:12px}
 .gal button{display:block;width:100%;padding:0;border:0;margin:0 0 12px;border-radius:12px;overflow:hidden;cursor:zoom-in;background:var(--card);break-inside:avoid}
 .gal img{display:block;width:100%;height:auto}
@@ -185,6 +190,20 @@ nav{display:none}
   <details><summary>Даёте гарантию?</summary><p>Да, гарантия на работы прописывается в договоре.</p></details>
 </div></section>
 
+<section id="zayavka"><div class="wrap">
+  <h2>Оставьте заявку на замер</h2>
+  <p class="lead">Оставьте имя и телефон, мы перезвоним и договоримся о времени.</p>
+  <form class="lead-form" id="lead">
+    <input class="hp" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <input name="name" type="text" placeholder="Ваше имя" required maxlength="60" autocomplete="name">
+    <input name="phone" type="tel" placeholder="Телефон" required maxlength="25" autocomplete="tel">
+    <textarea name="note" rows="3" maxlength="300" placeholder="Что нужно покрасить (по желанию)"></textarea>
+    <button class="btn" type="submit">Отправить заявку</button>
+    <small>Нажимая кнопку, вы соглашаетесь на обработку персональных данных для связи с вами.</small>
+    <div id="fmsg" role="status"></div>
+  </form>
+</div></section>
+
 <section id="kontakty"><div class="wrap contact">
   <div>
     <h2>Запишитесь на бесплатный замер</h2>
@@ -210,6 +229,7 @@ nav{display:none}
 const PHONE = "+79966889979";            // телефон для ссылки (без пробелов)
 const PHONE_SHOW = "+7 (996) 688-99-79"; // как телефон выглядит на сайте
 const WA = "79966889979";                // WhatsApp: номер без плюса
+const LEAD_URL = "https://stroykompas-zayavk.shamanvaliev07.workers.dev"; // адрес вашего Cloudflare Worker для заявок (см. инструкцию)
 const TG = "your_username";              // Telegram без @
 // Услуги и цены за м² (меняйте под себя)
 const WORKS = [
@@ -275,6 +295,21 @@ $("#gal").addEventListener("click", e=>{
 });
 lb.addEventListener("click", closeLb);
 document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeLb(); });
+
+$("#lead").addEventListener("submit", async e=>{
+  e.preventDefault();
+  const f = e.target, d = Object.fromEntries(new FormData(f)), msg = $("#fmsg"), btn = f.querySelector("button");
+  if(d.site) return; // защита от ботов
+  const text = `Заявка с сайта\nИмя: ${d.name}\nТелефон: ${d.phone}` + (d.note ? `\nКомментарий: ${d.note}` : "");
+  if(!LEAD_URL){ window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(text),"_blank"); return; }
+  btn.disabled = true; msg.textContent = "Отправляем…";
+  try{
+    const r = await fetch(LEAD_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:d.name,phone:d.phone,note:d.note||""})});
+    if(!r.ok) throw 0;
+    f.reset(); msg.textContent = "Спасибо! Мы позвоним вам в ближайшее время.";
+  }catch(err){ msg.textContent = "Не удалось отправить. Позвоните нам или напишите в WhatsApp."; }
+  btn.disabled = false;
+});
 </script>
 </body>
 </html>
