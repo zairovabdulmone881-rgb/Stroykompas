@@ -174,9 +174,10 @@ nav{display:none}
     <!-- Сюда скрипт вашего сайта автоматически подставит фотографии из массива PHOTOS -->
   </div>
 </div></section>
+  
+  calculate();
 
-    calculate();
-  // Обработка отправки формы заявки (в Telegram + перенаправление в WhatsApp)
+// Обработка отправки формы заявки (в Telegram + перенаправление в WhatsApp)
 document.getElementById("lead").addEventListener("submit", function(e) {
     e.preventDefault(); // Останавливаем стандартную перезагрузку страницы
     
@@ -200,6 +201,20 @@ document.getElementById("lead").addEventListener("submit", function(e) {
                         `💰 Предварительная цена: ${totalPrice} ₽\n` +
                         `📝 Комментарий: ${note}`;
 
+    // Функция для безопасного открытия WhatsApp
+    const redirectToWhatsApp = () => {
+        // Знак \$ и косые кавычки установлены правильно
+        const waUrl = "https://wa.me" + WA + "?text=" + encodeURIComponent(textMessage);
+  
+        // Очищаем форму и открываем WhatsApp
+        form.reset();
+        document.getElementById("fmsg").innerHTML = "<p style='color:green; font-weight:bold;'>Заявка создана! Перенаправляем в WhatsApp...</p>";
+        
+        setTimeout(() => {
+            window.location.href = waUrl;
+        }, 600);
+    };
+
     // 2. Отправляем скрытый запрос в ваш Telegram (Cloudflare Worker)
     fetch(LEAD_URL, {
         method: "POST",
@@ -209,20 +224,12 @@ document.getElementById("lead").addEventListener("submit", function(e) {
             phone: phone,
             note: `Выбрано: ${selectedWorkText}, Площадь: ${area}м², Цена: ${totalPrice}₽. Комментарий: ${note}`
         })
-    }).catch(err => console.log("Ошибка отправки в Telegram, но мы дублируем в WA"));
-
-    // 3. Мгновенно открываем WhatsApp с готовым текстом сообщения
-    // Используем переменную WA, которая уже создана у вас в настройках выше
-    const waUrl = `https://wa.me{WA}?text=${encodeURIComponent(textMessage)}`;
-    
-    // Очищаем форму и открываем WhatsApp
-    form.reset();
-    document.getElementById("fmsg").innerHTML = "<p style='color:green; font-weight:bold;'>Заявка создана! Перенаправляем в WhatsApp...</p>";
-    
-    setTimeout(() => {
-        window.location.href = waUrl;
-    }, 1000);
+    })
+    .then(() => {
+        redirectToWhatsApp();
+    })
+    .catch(err => {
+        console.log("Ошибка отправки в Telegram, но мы дублируем в WA", err);
+        redirectToWhatsApp();
+    });
 });
-
-});
-</script>
