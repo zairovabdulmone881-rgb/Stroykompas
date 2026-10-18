@@ -5,62 +5,175 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Строй Компас — ремонт и отделка в Ханты-Мансийске</title>
 <link rel="icon" href="favicon.ico" sizes="any">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0F1115;--card:#1C212B;--ink:#F4F6F8;--muted:#8E96A4;
-  --line:#2A313D;--accent:#FF6B2C;--on-accent:#FFFFFF;
-  --wa:#25D366; /* Цвет WhatsApp */
+  --bg:#0A0C10;
+  --card:#151A22;
+  --card-hover:#1C232E;
+  --ink:#F8FAFC;
+  --muted:#94A3B8;
+  --line:#2A3441;
+  --accent:#FF6B2C;
+  --accent-hover:#E85A1A;
+  --wa:#25D366;
+  --tg:#2AABEE;
+  --shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
 }
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.5;padding-bottom:80px}
-h1,h2,h3{font-family:'Space Grotesk',sans-serif;margin:0;line-height:1.1}
-h1{font-size:32px}
-h2{font-size:24px;margin-bottom:20px}
+body{
+  margin:0;font-family:'Montserrat', sans-serif;background:var(--bg);color:var(--ink);
+  font-size:16px;line-height:1.6;padding-bottom:80px;-webkit-font-smoothing: antialiased;
+}
+h1,h2,h3,h4{margin:0;line-height:1.2;font-weight:700}
+h1{font-size:36px;letter-spacing:-0.02em}
+h2{font-size:28px;margin-bottom:30px;text-align:center}
 p{margin:0}
-a{color:inherit;text-decoration:none}
+a{color:inherit;text-decoration:none;transition:0.3s}
 img{max-width:100%;display:block}
-.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
-.btn{display:inline-flex;align-items:center;justify-content:center;background:var(--accent);color:#fff;font-weight:600;border-radius:8px;padding:14px 24px;border:none;font-size:16px;text-align:center;cursor:pointer;transition: 0.2s;}
-.btn:hover {opacity: 0.9;}
-.btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
-.btn-wa{background:var(--wa); color:#fff; margin-bottom:10px;}
-header{background:var(--bg);border-bottom:1px solid var(--line);padding:15px 0}
+.wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+
+/* Buttons */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  background:var(--accent);color:#fff;font-weight:600;
+  border-radius:12px;padding:16px 32px;border:none;font-size:16px;
+  text-align:center;cursor:pointer;transition:all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 107, 44, 0.3);
+}
+.btn:hover{background:var(--accent-hover);transform:translateY(-2px);box-shadow: 0 6px 20px rgba(255, 107, 44, 0.4);}
+.btn-ghost{background:transparent;color:var(--ink);border:2px solid var(--line);box-shadow:none;}
+.btn-ghost:hover{background:var(--line);transform:translateY(-2px);box-shadow:none;}
+.btn-wa{background:var(--wa); box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);}
+.btn-wa:hover{background:#1EBE5B; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);}
+.btn-tg{background:var(--tg); box-shadow: 0 4px 15px rgba(42, 171, 238, 0.3);}
+.btn-tg:hover{background:#1E9CD7; box-shadow: 0 6px 20px rgba(42, 171, 238, 0.4);}
+
+/* Header */
+header{
+  background:rgba(10, 12, 16, 0.8);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);padding:15px 0;
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+}
 header .wrap{display:flex;justify-content:space-between;align-items:center}
-.logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px}
-.hero{padding:50px 0;text-align:center}
-.hero h1 span{color:var(--accent)}
-.hero p{color:var(--muted);margin:20px 0;font-size:18px}
-.hero .cta{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
-.section{padding:50px 0;border-top:1px solid var(--line)}
-.services{display:grid;grid-template-columns:1fr;gap:15px}
-.svc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px}
-.svc h3{font-size:18px;margin-bottom:8px}
-.svc p{color:var(--muted);font-size:14px;margin-bottom:10px}
-.svc b{color:var(--accent);font-size:16px}
-.gal{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.gal img{border-radius:8px;height:150px;object-fit:cover}
-.calc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px}
-.calc label{display:block;margin-bottom:8px;color:var(--muted);font-size:14px}
-.calc select,.calc input{width:100%;padding:12px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:16px;margin-bottom:15px}
-.calc-res{background:var(--bg);padding:20px;border-radius:8px;text-align:center;margin-top:15px}
-.sum{font-size:28px;font-weight:700;color:var(--accent);margin-bottom:15px}
-form{background:var(--card);padding:20px;border-radius:12px}
-form input{width:100%;padding:14px;margin-bottom:10px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:16px}
-#fmsg{text-align:center;margin-top:15px;color:var(--accent);font-size:14px}
-footer{text-align:center;padding:30px 0 100px;color:var(--muted);font-size:14px}
-.mobile-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(15,17,21,0.95);border-top:1px solid var(--line);padding:10px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;z-index:100}
-.mobile-bar .btn{padding:10px 5px;font-size:13px}
-.mobile-bar .btn-wa{background:var(--wa); border:none; margin-bottom:0;}
+.logo{font-weight:800;font-size:22px;letter-spacing:1px;display:flex;align-items:center;gap:10px;}
+.logo span{color:var(--accent)}
+
+/* Hero */
+.hero{
+  padding:160px 0 100px;text-align:center;position:relative;
+  background: linear-gradient(to bottom, rgba(10,12,16,0.7), var(--bg)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80') center/cover;
+}
+.hero h1{font-size:48px;margin-bottom:20px;}
+.hero h1 span{color:var(--accent);}
+.hero p{color:#CBD5E1;margin:0 auto 40px;font-size:20px;max-width:600px;}
+.hero .cta{display:flex;justify-content:center;gap:15px;flex-wrap:wrap;}
+
+/* Sections */
+.section{padding:80px 0;border-top:1px solid var(--line)}
+
+/* Services */
+.services{display:grid;grid-template-columns:1fr;gap:20px}
+.svc{
+  background:var(--card);border:1px solid var(--line);border-radius:16px;
+  padding:30px;transition:all 0.3s ease;cursor:pointer;position:relative;overflow:hidden;
+}
+.svc::before{
+  content:'';position:absolute;top:0;left:0;width:4px;height:0;
+  background:var(--accent);transition:0.3s;border-radius:4px 0 0 4px;
+}
+.svc:hover{background:var(--card-hover);transform:translateY(-5px);box-shadow:var(--shadow);border-color:#3A475A;}
+.svc:hover::before{height:100%;}
+.svc h3{font-size:22px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;}
+.svc p{color:var(--muted);font-size:15px;margin-bottom:20px;}
+.svc .price{color:var(--accent);font-size:18px;font-weight:700;display:block;}
+
+/* Gallery */
+.gal{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.gal img{
+  border-radius:16px;height:250px;object-fit:cover;width:100%;
+  transition:transform 0.4s ease, filter 0.4s ease;filter:brightness(0.8);cursor:pointer;
+}
+.gal img:hover{transform:scale(1.02);filter:brightness(1);z-index:2;position:relative;}
+
+/* Calculator */
+.calc{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:40px;box-shadow:var(--shadow);}
+.calc label{display:block;margin-bottom:10px;color:var(--muted);font-size:14px;font-weight:500;}
+.calc select,.calc input{
+  width:100%;padding:16px;border-radius:12px;border:1px solid var(--line);
+  background:var(--bg);color:var(--ink);font-size:16px;margin-bottom:25px;
+  font-family:'Montserrat', sans-serif;outline:none;transition:0.3s;
+}
+.calc select:focus,.calc input:focus{border-color:var(--accent);}
+.calc-res{background:rgba(255,107,44,0.05);padding:30px;border-radius:16px;text-align:center;border:1px dashed rgba(255,107,44,0.3);}
+.sum{font-size:36px;font-weight:800;color:var(--accent);margin-bottom:25px;}
+
+/* Form */
+form{background:var(--card);padding:40px;border-radius:24px;border:1px solid var(--line);}
+form input{
+  width:100%;padding:16px;margin-bottom:15px;border-radius:12px;
+  border:1px solid var(--line);background:var(--bg);color:var(--ink);
+  font-size:16px;font-family:'Montserrat', sans-serif;outline:none;transition:0.3s;
+}
+form input:focus{border-color:var(--accent);}
+#fmsg{text-align:center;margin-top:20px;color:var(--accent);font-size:15px;font-weight:600;}
+
+footer{text-align:center;padding:40px 0 100px;color:var(--muted);font-size:14px;border-top:1px solid var(--line);}
+
+/* Mobile Bar */
+.mobile-bar{
+  position:fixed;bottom:0;left:0;right:0;background:rgba(21, 26, 34, 0.95);
+  backdrop-filter:blur(10px);border-top:1px solid var(--line);
+  padding:12px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;z-index:1000;
+}
+.mobile-bar .btn{padding:12px 5px;font-size:13px;border-radius:10px;box-shadow:none;}
+
+/* Chat Widget */
+.chat-widget{position:fixed;bottom:90px;right:20px;z-index:2000;display:flex;flex-direction:column;align-items:flex-end;}
+.chat-btn{
+  width:65px;height:65px;border-radius:50%;background:var(--accent);color:#fff;
+  display:flex;justify-content:center;align-items:center;cursor:pointer;
+  box-shadow:0 4px 20px rgba(255,107,44,0.5);transition:0.3s;
+}
+.chat-btn:hover{transform:scale(1.05);}
+.chat-btn svg{width:30px;height:30px;fill:currentColor;}
+.chat-window{
+  display:none;width:350px;height:500px;background:var(--card);
+  border-radius:20px;box-shadow:0 10px 40px rgba(0,0,0,0.6);border:1px solid var(--line);
+  margin-bottom:15px;overflow:hidden;flex-direction:column;animation:slideUp 0.3s ease;
+}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.chat-header{background:var(--accent);padding:20px;color:#fff;display:flex;align-items:center;gap:15px;}
+.chat-header h4{margin:0;font-size:16px;}
+.chat-header p{margin:0;font-size:12px;opacity:0.9;display:flex;align-items:center;gap:5px;}
+.chat-header p::before{content:'';width:8px;height:8px;background:#25D366;border-radius:50%;display:inline-block;}
+.chat-body{flex:1;padding:20px;overflow-y:auto;display:flex;flex-direction:column;gap:15px;background:var(--bg);}
+.msg{max-width:80%;padding:12px 16px;border-radius:16px;font-size:14px;line-height:1.4;}
+.msg.bot{background:var(--card);color:var(--ink);align-self:flex-start;border-bottom-left-radius:4px;border:1px solid var(--line);}
+.msg.user{background:var(--accent);color:#fff;align-self:flex-end;border-bottom-right-radius:4px;}
+.chat-input-area{padding:15px;background:var(--card);border-top:1px solid var(--line);display:flex;gap:10px;}
+.chat-input-area input{
+  flex:1;padding:12px 15px;border-radius:20px;border:1px solid var(--line);
+  background:var(--bg);color:var(--ink);font-family:'Montserrat';outline:none;
+}
+.chat-input-area button{
+  background:var(--accent);border:none;border-radius:50%;width:44px;height:44px;
+  color:#fff;cursor:pointer;display:flex;justify-content:center;align-items:center;
+}
+.chat-input-area button svg{width:20px;height:20px;fill:currentColor;margin-left:-2px;}
+
 @media(min-width:768px){
-  h1{font-size:48px}
-  .services{grid-template-columns:1fr 1fr 1fr}
-  .gal{grid-template-columns:repeat(3,1fr)}
-  .gal img{height:200px}
-  .calc-flex{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-  .mobile-bar{display:none}
-  footer{padding-bottom:30px}
+  .hero h1{font-size:64px;}
+  .services{grid-template-columns:1fr 1fr;}
+  .gal{grid-template-columns:repeat(4,1fr);}
+  .calc-flex{display:grid;grid-template-columns:1fr 1fr;gap:30px;}
+  .mobile-bar{display:none;}
+  footer{padding-bottom:40px;}
+  .chat-widget{bottom:30px;}
+}
+@media(max-width:400px){
+  .chat-window{width:calc(100vw - 40px);height:400px;}
 }
 </style>
 </head>
@@ -68,26 +181,42 @@ footer{text-align:center;padding:30px 0 100px;color:var(--muted);font-size:14px}
 
 <header>
   <div class="wrap">
-    <div class="logo">СК Строй Компас</div>
+    <div class="logo">СК <span>Строй Компас</span></div>
   </div>
 </header>
 
 <div class="hero wrap">
-  <h1>Ремонт квартир <span>под ключ</span></h1>
-  <p>Бесплатный замер, фиксированная смета, гарантия 2 года</p>
+  <h1>Ремонт квартир <br><span>под ключ</span> в ХМАО</h1>
+  <p>Фиксированная смета, дизайн-проект в подарок и гарантия 2 года на все работы.</p>
   <div class="cta">
-    <a href="#calc" class="btn">Рассчитать</a>
-    <a href="tel:+79966889979" class="btn btn-ghost">Позвонить</a>
+    <a href="#calc" class="btn">Рассчитать стоимость</a>
+    <a href="tel:+79966889979" class="btn btn-ghost">Вызвать замерщика</a>
   </div>
 </div>
 
-<div class="section wrap">
+<div class="section wrap" id="services">
   <h2>Услуги</h2>
   <div class="services">
-    <div class="svc"><h3>Покраска</h3><p>Грунтовка, шпаклёвка, покраска</p><b>от 380 ₽/м²</b></div>
-    <div class="svc"><h3>Плитка</h3><p>Санузлы, мозаика, гидроизоляция</p><b>от 800 ₽/м²</b></div>
-    <div class="svc"><h3>Электрика</h3><p>Щиты, розетки, проводка</p><b>от 450 ₽/точка</b></div>
-    <div class="svc"><h3>Сантехника</h3><p>Трубы, счётчики, установка</p><b>от 2000 ₽/точка</b></div>
+    <div class="svc" data-service="Покраска">
+      <h3>Покраска <span>🎨</span></h3>
+      <p>Грунтовка, шпаклёвка, покраска</p>
+      <span class="price">от 380 ₽/м²</span>
+    </div>
+    <div class="svc" data-service="Плитка">
+      <h3>Плитка <span>🧱</span></h3>
+      <p>Санузлы, мозаика, гидроизоляция</p>
+      <span class="price">от 800 ₽/м²</span>
+    </div>
+    <div class="svc" data-service="Электрика">
+      <h3>Электрика <span>⚡</span></h3>
+      <p>Щиты, розетки, проводка</p>
+      <span class="price">от 450 ₽/точка</span>
+    </div>
+    <div class="svc" data-service="Сантехника">
+      <h3>Сантехника <span>🔧</span></h3>
+      <p>Трубы, счётчики, установка</p>
+      <span class="price">от 2000 ₽/точка</span>
+    </div>
   </div>
 </div>
 
@@ -112,6 +241,7 @@ footer{text-align:center;padding:30px 0 100px;color:var(--muted);font-size:14px}
           <option value="Покраска">Покраска (от 450 ₽/м²)</option>
           <option value="Плитка">Плитка (от 900 ₽/м²)</option>
           <option value="Электрика">Электрика (от 600 ₽/точка)</option>
+          <option value="Сантехника">Сантехника (от 2000 ₽/точка)</option>
         </select>
       </div>
       <div>
@@ -121,12 +251,8 @@ footer{text-align:center;padding:30px 0 100px;color:var(--muted);font-size:14px}
     </div>
     <div class="calc-res">
       <div class="sum" id="sum">275 000 ₽</div>
-      
-      <!-- Новая кнопка для WhatsApp -->
-      <a href="#" id="order-wa" class="btn btn-wa" target="_blank">Отправить в WhatsApp</a>
-      
-      <!-- Кнопка для заявки в Telegram (прокручивает вниз) -->
-      <button id="order" class="btn" style="width:100%">Жду звонка</button>
+      <a href="#" id="order-wa" class="btn btn-wa" target="_blank" style="width:100%;margin-bottom:15px;">Отправить в WhatsApp</a>
+      <button id="order" class="btn btn-ghost" style="width:100%">Жду звонка</button>
     </div>
   </div>
 </div>
@@ -156,12 +282,37 @@ footer{text-align:center;padding:30px 0 100px;color:var(--muted);font-size:14px}
 <!-- Нижняя панель -->
 <div class="mobile-bar">
   <a href="tel:+79966889979" class="btn btn-ghost">Звонок</a>
-  <!-- Добавлен id="wa-mobile", чтобы скрипт мог менять ссылку на лету -->
   <a href="https://wa.me/79966889979" id="wa-mobile" target="_blank" class="btn btn-wa">WhatsApp</a>
-  <a href="https://t.me/Stroykompas86_bot?start=site" target="_blank" class="btn">Telegram</a>
+  <a href="https://t.me/Stroykompas86_bot?start=site" target="_blank" class="btn btn-tg">Telegram</a>
+</div>
+
+<!-- Виджет чата с онлайн-инструктором -->
+<div class="chat-widget">
+  <div class="chat-window" id="chatWindow">
+    <div class="chat-header">
+      <div style="background:#fff;border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:24px;">👷</div>
+      <div>
+        <h4>Онлайн-прораб</h4>
+        <p>Онлайн</p>
+      </div>
+    </div>
+    <div class="chat-body" id="chatBody">
+      <div class="msg bot">Здравствуйте! Я ваш онлайн-консультант. Задайте любой вопрос по ремонту, срокам или материалам!</div>
+    </div>
+    <div class="chat-input-area">
+      <input type="text" id="chatInput" placeholder="Напишите вопрос..." onkeypress="handleChatEnter(event)">
+      <button onclick="sendChatMessage()">
+        <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="chat-btn" id="chatToggle" onclick="toggleChat()">
+    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+  </div>
 </div>
 
 <script>
+// --- 1. ВАША ЛОГИКА КАЛЬКУЛЯТОРА (ПОЛНОСТЬЮ СОХРАНЕНА) ---
 try {
   var typeEl = document.getElementById('type');
   var areaEl = document.getElementById('area');
@@ -182,15 +333,14 @@ try {
     else if (val.indexOf('Покраска') !== -1) { rate = 450; }
     else if (val.indexOf('Плитка') !== -1) { rate = 900; }
     else if (val.indexOf('Электрика') !== -1) { rate = 600; unit = 'точек'; }
+    else if (val.indexOf('Сантехника') !== -1) { rate = 2000; unit = 'точек'; }
 
     lblEl.textContent = (unit === 'м²') ? 'Площадь, м²' : 'Кол-во точек, шт.';
     var total = area * rate;
     sumEl.textContent = total.toLocaleString('ru-RU') + ' ₽';
 
-    // Записываем текст для Telegram (скрытое поле)
     reqEl.value = val + ', ' + area + ' ' + unit + '. Примерная стоимость: ' + total + ' руб.';
 
-    // Формируем красивый текст для WhatsApp
     var waText = 'Здравствуйте! Хочу заказать ремонт.\n\n' +
                  'Вид работ: ' + val + '\n' +
                  'Количество: ' + area + ' ' + unit + '\n' +
@@ -198,24 +348,40 @@ try {
                  
     var waUrl = 'https://wa.me/79966889979?text=' + encodeURIComponent(waText);
     
-    // Обновляем ссылки на кнопках WhatsApp
     waBtn.href = waUrl;
-    waMobileBtn.href = waUrl; // Кнопка внизу экрана теперь тоже подставляет расчет!
+    waMobileBtn.href = waUrl; 
   }
 
   typeEl.onchange = updateCalc;
   areaEl.oninput = updateCalc;
-  updateCalc(); // Запуск при загрузке
+  updateCalc(); 
 
-  // Кнопка "Жду звонка" прокручивает к форме
+  // НОВОЕ: Клик по карточке услуги плавно скроллит к калькулятору и выбирает услугу
+  var svcCards = document.querySelectorAll('.svc');
+  svcCards.forEach(function(card) {
+    card.addEventListener('click', function() {
+      var serviceName = this.getAttribute('data-service');
+      if(serviceName) {
+        typeEl.value = serviceName;
+        updateCalc();
+        document.getElementById('calc').scrollIntoView({ behavior: 'smooth' });
+        var calcBlock = document.querySelector('.calc');
+        calcBlock.style.boxShadow = '0 0 30px rgba(255, 107, 44, 0.6)';
+        setTimeout(function(){ calcBlock.style.boxShadow = 'var(--shadow)'; }, 1000);
+      }
+    });
+  });
+
   document.getElementById('order').onclick = function(e) {
     e.preventDefault();
     document.getElementById('zayavka').scrollIntoView({ behavior: 'smooth' });
-    document.getElementById('name').focus();
+    setTimeout(function(){ document.getElementById('name').focus(); }, 500);
   };
 
 } catch(e) { console.log('Ошибка калькулятора:', e); }
 
+
+// --- 2. ВАША ЛОГИКА ОТПРАВКИ ФОРМЫ (PIPEDREAM) ---
 try {
   document.getElementById('lead').onsubmit = function(e) {
     e.preventDefault();
@@ -225,6 +391,7 @@ try {
     var msg = document.getElementById('fmsg');
     
     msg.textContent = 'Отправляем...';
+    msg.style.color = 'var(--muted)';
     
     fetch('https://eoke979s3m1qnx6.m.pipedream.net', {
       method: 'POST',
@@ -238,13 +405,83 @@ try {
         message: req || 'Не указан'
       })
     }).then(function(res){
-      if(res.ok) { msg.textContent = 'Спасибо! Мы позвоним.'; document.getElementById('lead').reset(); }
-      else { msg.textContent = 'Ошибка. Позвоните: +7 996 688-99-79'; }
+      if(res.ok) { 
+        msg.textContent = 'Спасибо! Мы позвоним.'; 
+        msg.style.color = 'var(--wa)';
+        document.getElementById('lead').reset(); 
+      }
+      else { 
+        msg.textContent = 'Ошибка. Позвоните: +7 996 688-99-79'; 
+        msg.style.color = '#ff4444';
+      }
     }).catch(function(){
       msg.textContent = 'Ошибка сети. Позвоните: +7 996 688-99-79';
+      msg.style.color = '#ff4444';
     });
   };
 } catch(e) { console.log('Ошибка формы:', e); }
+
+
+// --- 3. НОВОЕ: ЛОГИКА ЧАТА С ОНЛАЙН-ИНСТРУКТОРОМ ---
+var chatOpen = false;
+
+function toggleChat() {
+  var win = document.getElementById('chatWindow');
+  chatOpen = !chatOpen;
+  win.style.display = chatOpen ? 'flex' : 'none';
+}
+
+function handleChatEnter(e) {
+  if (e.key === 'Enter') {
+    sendChatMessage();
+  }
+}
+
+function sendChatMessage() {
+  var input = document.getElementById('chatInput');
+  var text = input.value.trim();
+  if (!text) return;
+
+  var chatBody = document.getElementById('chatBody');
+
+  // Добавляем сообщение пользователя
+  var userMsg = document.createElement('div');
+  userMsg.className = 'msg user';
+  userMsg.textContent = text;
+  chatBody.appendChild(userMsg);
+  input.value = '';
+
+  chatBody.scrollTop = chatBody.scrollHeight;
+
+  // Имитация ответа бота
+  setTimeout(function() {
+    var botMsg = document.createElement('div');
+    botMsg.className = 'msg bot';
+    
+    var lowerText = text.toLowerCase();
+    var response = "";
+
+    if (lowerText.match(/(цена|стоимость|сколько|смета)/)) {
+      response = "Стоимость зависит от объема работ и материалов. Рекомендую воспользоваться калькулятором на сайте или нажать на карточку услуги выше. Точную смету я составлю после бесплатного замера.";
+    } else if (lowerText.match(/(срок|время|когда|долго)/)) {
+      response = "Стандартный ремонт квартиры (50-60 кв.м) занимает от 1.5 до 3 месяцев. Все зависит от сложности дизайна. Мы работаем строго по графику.";
+    } else if (lowerText.match(/(плитка|санузел|ванная)/)) {
+      response = "Укладка плитки у нас от 900 руб/кв.м. Сюда входит гидроизоляция и выравнивание. Сложная мозаика рассчитывается индивидуально.";
+    } else if (lowerText.match(/(электрик|проводка|розетк)/)) {
+      response = "Электрика делается под ключ: от сборки щита до установки розеток. Цена от 600 руб за точку. Безопасность — наш приоритет!";
+    } else if (lowerText.match(/(гарантия|качество)/)) {
+      response = "Мы даем официальную гарантию 2 года на все виды работ. Заключаем договор, где прописаны все обязательства.";
+    } else if (lowerText.match(/(привет|здравствуйте|добрый)/)) {
+      response = "Здравствуйте! Готов ответить на ваши вопросы. Спросите меня о ценах, сроках или материалах.";
+    } else {
+      response = "Отличный вопрос! Для детального ответа лучше всего связаться с нашим прорабом. Нажмите зеленую кнопку WhatsApp внизу экрана или оставьте заявку, и мы вам перезвоним!";
+    }
+
+    botMsg.textContent = response;
+    chatBody.appendChild(botMsg);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }, 1000); 
+}
 </script>
 
 </body>
