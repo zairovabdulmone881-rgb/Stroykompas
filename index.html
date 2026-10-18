@@ -36,10 +36,6 @@ header .wrap{display:flex;justify-content:space-between;align-items:center}
 .svc h3{font-size:18px;margin-bottom:8px}
 .svc p{color:var(--muted);font-size:14px;margin-bottom:10px}
 .svc b{color:var(--accent);font-size:16px}
-.price-list{list-style:none;padding:0}
-.price-list li{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line)}
-.photos-mini{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
-.photos-mini img{border-radius:8px;height:150px;object-fit:cover}
 .gal{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .gal img{border-radius:8px;height:150px;object-fit:cover}
 .calc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px}
@@ -47,9 +43,6 @@ header .wrap{display:flex;justify-content:space-between;align-items:center}
 .calc select,.calc input{width:100%;padding:12px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:16px;margin-bottom:15px}
 .calc-res{background:var(--bg);padding:20px;border-radius:8px;text-align:center;margin-top:15px}
 .sum{font-size:28px;font-weight:700;color:var(--accent);margin-bottom:15px}
-.faq details{background:var(--card);margin-bottom:10px;padding:15px;border-radius:8px}
-.faq summary{cursor:pointer;font-weight:600}
-.faq p{color:var(--muted);margin-top:10px;font-size:14px}
 form{background:var(--card);padding:20px;border-radius:12px}
 form input{width:100%;padding:14px;margin-bottom:10px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:16px}
 #fmsg{text-align:center;margin-top:15px;color:var(--accent);font-size:14px}
@@ -97,10 +90,10 @@ footer{text-align:center;padding:30px 0 100px;color:var(--muted);font-size:14px}
 <div class="section wrap">
   <h2>Наши работы</h2>
   <div class="gal">
-    <img src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Фото">
-    <img src="https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Фото">
-    <img src="https://images.pexels.com/photos/35868664/pexels-photo-35868664.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Фото">
-    <img src="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Фото">
+    <img src="https://picsum.photos/seed/remont1/600/400" alt="Ремонт 1">
+    <img src="https://picsum.photos/seed/remont2/600/400" alt="Ремонт 2">
+    <img src="https://picsum.photos/seed/remont3/600/400" alt="Ремонт 3">
+    <img src="https://picsum.photos/seed/remont4/600/400" alt="Ремонт 4">
   </div>
 </div>
 
@@ -111,10 +104,10 @@ footer{text-align:center;padding:30px 0 100px;color:var(--muted);font-size:14px}
       <div>
         <label>Вид работ</label>
         <select id="type">
-          <option value="turnkey">Ремонт под ключ (от 5500 ₽/м²)</option>
-          <option value="paint">Покраска (от 450 ₽/м²)</option>
-          <option value="tile">Плитка (от 900 ₽/м²)</option>
-          <option value="electric">Электрика (от 600 ₽/точка)</option>
+          <option value="Ремонт под ключ">Ремонт под ключ (от 5500 ₽/м²)</option>
+          <option value="Покраска">Покраска (от 450 ₽/м²)</option>
+          <option value="Плитка">Плитка (от 900 ₽/м²)</option>
+          <option value="Электрика">Электрика (от 600 ₽/точка)</option>
         </select>
       </div>
       <div>
@@ -124,14 +117,16 @@ footer{text-align:center;padding:30px 0 100px;color:var(--muted);font-size:14px}
     </div>
     <div class="calc-res">
       <div class="sum" id="sum">275 000 ₽</div>
-      <a href="#" id="order" class="btn" style="width:100%">Отправить мастеру</a>
+      <button id="order" class="btn" style="width:100%">Отправить мастеру</button>
     </div>
   </div>
 </div>
 
-<div class="section wrap">
+<div id="zayavka" class="section wrap">
   <h2>Оставить заявку</h2>
   <form id="lead">
+    <!-- Скрытое поле, куда калькулятор записывает заказ -->
+    <input type="hidden" id="req-details" value="">
     <input type="text" id="name" placeholder="Ваше имя" required>
     <input type="tel" id="phone" placeholder="Телефон" required>
     <button type="submit" class="btn" style="width:100%">Жду звонка</button>
@@ -150,21 +145,19 @@ footer{text-align:center;padding:30px 0 100px;color:var(--muted);font-size:14px}
 
 <footer>© Строй Компас</footer>
 
-<!-- Нижняя панель для телефона (ссылки работают напрямую) -->
 <div class="mobile-bar">
   <a href="tel:+79966889979" class="btn btn-ghost">Звонок</a>
   <a href="https://wa.me/79966889979" target="_blank" class="btn">WhatsApp</a>
-  <a href="https://t.me/Stroykompas86_bot" target="_blank" class="btn">Telegram</a>
+  <a href="https://t.me/Stroykompas86_bot?start=site" target="_blank" class="btn">Telegram</a>
 </div>
 
 <script>
-// Этот скрипт максимально простой, чтобы точно работал на телефоне
 try {
   var typeEl = document.getElementById('type');
   var areaEl = document.getElementById('area');
   var sumEl = document.getElementById('sum');
-  var orderEl = document.getElementById('order');
   var lblEl = document.getElementById('lbl');
+  var reqEl = document.getElementById('req-details');
 
   function updateCalc() {
     var val = typeEl.value;
@@ -172,41 +165,47 @@ try {
     var rate = 0;
     var unit = 'м²';
 
-    if (val === 'turnkey') { rate = 5500; }
-    else if (val === 'paint') { rate = 450; }
-    else if (val === 'tile') { rate = 900; }
-    else if (val === 'electric') { rate = 600; unit = 'точек'; }
+    if (val.indexOf('Ремонт') !== -1) { rate = 5500; }
+    else if (val.indexOf('Покраска') !== -1) { rate = 450; }
+    else if (val.indexOf('Плитка') !== -1) { rate = 900; }
+    else if (val.indexOf('Электрика') !== -1) { rate = 600; unit = 'точек'; }
 
     lblEl.textContent = (unit === 'м²') ? 'Площадь, м²' : 'Кол-во точек, шт.';
-    
     var total = area * rate;
     sumEl.textContent = total.toLocaleString('ru-RU') + ' ₽';
 
-    // Ссылка для кнопки WhatsApp с текстом
-    var text = 'Здравствуйте! Хочу заказать: ' + typeEl.options[typeEl.selectedIndex].text + ', ' + area + ' ' + unit + '. Примерно: ' + total + ' руб.';
-    orderEl.href = 'https://wa.me/79966889979?text=' + encodeURIComponent(text);
-    orderEl.target = '_blank';
+    // Записываем заказ в скрытое поле, чтобы он улетел в Telegram
+    reqEl.value = val + ', ' + area + ' ' + unit + '. Примерная стоимость: ' + total + ' руб.';
   }
 
   typeEl.onchange = updateCalc;
   areaEl.oninput = updateCalc;
-  updateCalc(); // запуск при загрузке
+  updateCalc();
+
+  // Кнопка "Отправить мастеру" плавно скроллит к форме
+  document.getElementById('order').onclick = function(e) {
+    e.preventDefault();
+    document.getElementById('zayavka').scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('name').focus();
+  };
+
 } catch(e) { console.log('Ошибка калькулятора:', e); }
 
-// Отправка формы
 try {
   document.getElementById('lead').onsubmit = function(e) {
     e.preventDefault();
     var n = document.getElementById('name').value;
     var p = document.getElementById('phone').value;
+    var req = document.getElementById('req-details').value;
     var msg = document.getElementById('fmsg');
     
     msg.textContent = 'Отправляем...';
     
+    // Отправляем имя, телефон И сам заказ в Cloudflare Worker
     fetch('https://stroykompas-zayavk.shamanvaliev07.workers.dev', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({name: n, phone: p})
+      body: JSON.stringify({name: n, phone: p, message: req})
     }).then(function(res){
       if(res.ok) { msg.textContent = 'Спасибо! Мы позвоним.'; document.getElementById('lead').reset(); }
       else { msg.textContent = 'Ошибка. Позвоните: +7 996 688-99-79'; }
