@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -88,6 +89,8 @@ header .wrap{display:flex;justify-content:space-between;align-items:center}
 .svc h3{font-size:22px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;}
 .svc p{color:var(--muted);font-size:15px;margin-bottom:20px;}
 .svc .price{color:var(--accent);font-size:18px;font-weight:700;display:block;}
+.svc .arrow { font-size: 20px; color: var(--accent); opacity: 0; transition: 0.3s; transform: translateX(-10px); }
+.svc:hover .arrow { opacity: 1; transform: translateX(0); }
 
 /* Gallery */
 .gal{display:grid;grid-template-columns:1fr 1fr;gap:15px}
@@ -163,6 +166,40 @@ footer{text-align:center;padding:40px 0 100px;color:var(--muted);font-size:14px;
 }
 .chat-input-area button svg{width:20px;height:20px;fill:currentColor;margin-left:-2px;}
 
+/* =========================================
+   МОДАЛЬНОЕ ОКНО (ПОДРОБНОСТИ УСЛУГИ)
+   ========================================= */
+.modal-overlay {
+  display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 3000;
+  justify-content: center; align-items: center; padding: 20px;
+  opacity: 0; transition: opacity 0.3s ease;
+}
+.modal-overlay.active { display: flex; opacity: 1; }
+.modal-content {
+  background: var(--card); border: 1px solid var(--line); border-radius: 24px;
+  max-width: 700px; width: 100%; max-height: 90vh; overflow-y: auto;
+  padding: 40px; position: relative; transform: translateY(30px);
+  transition: transform 0.3s ease; box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+}
+.modal-overlay.active .modal-content { transform: translateY(0); }
+.modal-close {
+  position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.1);
+  border: none; color: var(--ink); width: 40px; height: 40px; border-radius: 50%;
+  font-size: 24px; cursor: pointer; display: flex; justify-content: center; align-items: center;
+  transition: 0.3s; z-index: 10;
+}
+.modal-close:hover { background: var(--accent); color: #fff; transform: rotate(90deg); }
+.modal-img {
+  width: 100%; height: 300px; object-fit: cover; border-radius: 16px; margin-bottom: 25px;
+}
+.modal-title { font-size: 28px; margin-bottom: 15px; color: var(--accent); }
+.modal-desc { color: var(--muted); font-size: 16px; margin-bottom: 25px; line-height: 1.7; }
+.modal-list { margin-bottom: 30px; padding-left: 20px; color: var(--ink); }
+.modal-list li { margin-bottom: 8px; }
+.modal-footer { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; border-top: 1px solid var(--line); padding-top: 20px; }
+.modal-price { font-size: 28px; font-weight: 800; color: var(--ink); }
+
 @media(min-width:768px){
   .hero h1{font-size:64px;}
   .services{grid-template-columns:1fr 1fr;}
@@ -174,6 +211,8 @@ footer{text-align:center;padding:40px 0 100px;color:var(--muted);font-size:14px;
 }
 @media(max-width:400px){
   .chat-window{width:calc(100vw - 40px);height:400px;}
+  .modal-content{padding: 25px;}
+  .modal-img{height: 200px;}
 }
 </style>
 </head>
@@ -200,22 +239,22 @@ footer{text-align:center;padding:40px 0 100px;color:var(--muted);font-size:14px;
     <div class="svc" data-service="Покраска">
       <h3>Покраска <span>🎨</span></h3>
       <p>Грунтовка, шпаклёвка, покраска</p>
-      <span class="price">от 380 ₽/м²</span>
+      <span class="price">от 380 ₽/м² <span class="arrow">→</span></span>
     </div>
     <div class="svc" data-service="Плитка">
       <h3>Плитка <span>🧱</span></h3>
       <p>Санузлы, мозаика, гидроизоляция</p>
-      <span class="price">от 800 ₽/м²</span>
+      <span class="price">от 800 ₽/м² <span class="arrow">→</span></span>
     </div>
     <div class="svc" data-service="Электрика">
       <h3>Электрика <span>⚡</span></h3>
       <p>Щиты, розетки, проводка</p>
-      <span class="price">от 450 ₽/точка</span>
+      <span class="price">от 450 ₽/точка <span class="arrow">→</span></span>
     </div>
     <div class="svc" data-service="Сантехника">
       <h3>Сантехника <span>🔧</span></h3>
       <p>Трубы, счётчики, установка</p>
-      <span class="price">от 2000 ₽/точка</span>
+      <span class="price">от 2000 ₽/точка <span class="arrow">→</span></span>
     </div>
   </div>
 </div>
@@ -311,15 +350,31 @@ footer{text-align:center;padding:40px 0 100px;color:var(--muted);font-size:14px;
   </div>
 </div>
 
+<!-- =========================================
+     МОДАЛЬНОЕ ОКНО (ПОДРОБНОСТИ УСЛУГИ)
+     ========================================= -->
+<div id="serviceModal" class="modal-overlay">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <img id="modalImg" src="" alt="Услуга" class="modal-img">
+    <h2 id="modalTitle" class="modal-title"></h2>
+    <p id="modalDesc" class="modal-desc"></p>
+    <ul id="modalList" class="modal-list"></ul>
+    <div class="modal-footer">
+      <div id="modalPrice" class="modal-price"></div>
+      <button class="btn" onclick="calcFromModal()">Рассчитать стоимость</button>
+    </div>
+  </div>
+</div>
+
 <script>
-// --- 1. ВАША ЛОГИКА КАЛЬКУЛЯТОРА (ПОЛНОСТЬЮ СОХРАНЕНА) ---
+// --- 1. ЛОГИКА КАЛЬКУЛЯТОРА ---
 try {
   var typeEl = document.getElementById('type');
   var areaEl = document.getElementById('area');
   var sumEl = document.getElementById('sum');
   var lblEl = document.getElementById('lbl');
   var reqEl = document.getElementById('req-details');
-  
   var waBtn = document.getElementById('order-wa');
   var waMobileBtn = document.getElementById('wa-mobile');
 
@@ -347,7 +402,6 @@ try {
                  'Примерная стоимость: ' + total.toLocaleString('ru-RU') + ' ₽';
                  
     var waUrl = 'https://wa.me/79966889979?text=' + encodeURIComponent(waText);
-    
     waBtn.href = waUrl;
     waMobileBtn.href = waUrl; 
   }
@@ -355,22 +409,6 @@ try {
   typeEl.onchange = updateCalc;
   areaEl.oninput = updateCalc;
   updateCalc(); 
-
-  // НОВОЕ: Клик по карточке услуги плавно скроллит к калькулятору и выбирает услугу
-  var svcCards = document.querySelectorAll('.svc');
-  svcCards.forEach(function(card) {
-    card.addEventListener('click', function() {
-      var serviceName = this.getAttribute('data-service');
-      if(serviceName) {
-        typeEl.value = serviceName;
-        updateCalc();
-        document.getElementById('calc').scrollIntoView({ behavior: 'smooth' });
-        var calcBlock = document.querySelector('.calc');
-        calcBlock.style.boxShadow = '0 0 30px rgba(255, 107, 44, 0.6)';
-        setTimeout(function(){ calcBlock.style.boxShadow = 'var(--shadow)'; }, 1000);
-      }
-    });
-  });
 
   document.getElementById('order').onclick = function(e) {
     e.preventDefault();
@@ -381,7 +419,7 @@ try {
 } catch(e) { console.log('Ошибка калькулятора:', e); }
 
 
-// --- 2. ВАША ЛОГИКА ОТПРАВКИ ФОРМЫ (PIPEDREAM) ---
+// --- 2. ЛОГИКА ОТПРАВКИ ФОРМЫ (PIPEDREAM) ---
 try {
   document.getElementById('lead').onsubmit = function(e) {
     e.preventDefault();
@@ -395,15 +433,8 @@ try {
     
     fetch('https://eoke979s3m1qnx6.m.pipedream.net', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify({
-        name: n,
-        phone: p,
-        message: req || 'Не указан'
-      })
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ name: n, phone: p, message: req || 'Не указан' })
     }).then(function(res){
       if(res.ok) { 
         msg.textContent = 'Спасибо! Мы позвоним.'; 
@@ -422,65 +453,171 @@ try {
 } catch(e) { console.log('Ошибка формы:', e); }
 
 
-// --- 3. НОВОЕ: ЛОГИКА ЧАТА С ОНЛАЙН-ИНСТРУКТОРОМ ---
+// --- 3. ЛОГИКА ЧАТА (ПРОСТОЙ БОТ) ---
 var chatOpen = false;
-
 function toggleChat() {
   var win = document.getElementById('chatWindow');
   chatOpen = !chatOpen;
   win.style.display = chatOpen ? 'flex' : 'none';
 }
-
-function handleChatEnter(e) {
-  if (e.key === 'Enter') {
-    sendChatMessage();
-  }
-}
-
+function handleChatEnter(e) { if (e.key === 'Enter') sendChatMessage(); }
 function sendChatMessage() {
   var input = document.getElementById('chatInput');
   var text = input.value.trim();
   if (!text) return;
-
-  var chatBody = document.getElementById('chatBody');
-
-  // Добавляем сообщение пользователя
+    var chatBody = document.getElementById('chatBody');
   var userMsg = document.createElement('div');
-  userMsg.className = 'msg user';
-  userMsg.textContent = text;
-  chatBody.appendChild(userMsg);
-  input.value = '';
-
+  userMsg.className = 'msg user'; userMsg.textContent = text;
+  chatBody.appendChild(userMsg); input.value = '';
   chatBody.scrollTop = chatBody.scrollHeight;
 
-  // Имитация ответа бота
   setTimeout(function() {
     var botMsg = document.createElement('div');
     botMsg.className = 'msg bot';
-    
     var lowerText = text.toLowerCase();
     var response = "";
-
-    if (lowerText.match(/(цена|стоимость|сколько|смета)/)) {
-      response = "Стоимость зависит от объема работ и материалов. Рекомендую воспользоваться калькулятором на сайте или нажать на карточку услуги выше. Точную смету я составлю после бесплатного замера.";
-    } else if (lowerText.match(/(срок|время|когда|долго)/)) {
-      response = "Стандартный ремонт квартиры (50-60 кв.м) занимает от 1.5 до 3 месяцев. Все зависит от сложности дизайна. Мы работаем строго по графику.";
-    } else if (lowerText.match(/(плитка|санузел|ванная)/)) {
-      response = "Укладка плитки у нас от 900 руб/кв.м. Сюда входит гидроизоляция и выравнивание. Сложная мозаика рассчитывается индивидуально.";
-    } else if (lowerText.match(/(электрик|проводка|розетк)/)) {
-      response = "Электрика делается под ключ: от сборки щита до установки розеток. Цена от 600 руб за точку. Безопасность — наш приоритет!";
-    } else if (lowerText.match(/(гарантия|качество)/)) {
-      response = "Мы даем официальную гарантию 2 года на все виды работ. Заключаем договор, где прописаны все обязательства.";
-    } else if (lowerText.match(/(привет|здравствуйте|добрый)/)) {
-      response = "Здравствуйте! Готов ответить на ваши вопросы. Спросите меня о ценах, сроках или материалах.";
-    } else {
-      response = "Отличный вопрос! Для детального ответа лучше всего связаться с нашим прорабом. Нажмите зеленую кнопку WhatsApp внизу экрана или оставьте заявку, и мы вам перезвоним!";
-    }
-
+    if (lowerText.match(/(цена|стоимость|сколько|смета)/)) response = "Стоимость зависит от объема работ. Рекомендую воспользоваться калькулятором на сайте. Точную смету я составлю после бесплатного замера.";
+    else if (lowerText.match(/(срок|время|когда|долго)/)) response = "Стандартный ремонт квартиры (50-60 кв.м) занимает от 1.5 до 3 месяцев. Все зависит от сложности дизайна.";
+    else if (lowerText.match(/(плитка|санузел|ванная)/)) response = "Укладка плитки у нас от 900 руб/кв.м. Сюда входит гидроизоляция и выравнивание.";
+    else if (lowerText.match(/(электрик|проводка|розетк)/)) response = "Электрика делается под ключ: от сборки щита до установки розеток. Цена от 600 руб за точку.";
+    else if (lowerText.match(/(гарантия|качество)/)) response = "Мы даем официальную гарантию 2 года на все виды работ. Заключаем договор.";
+    else if (lowerText.match(/(привет|здравствуйте|добрый)/)) response = "Здравствуйте! Готов ответить на ваши вопросы. Спросите меня о ценах, сроках или материалах.";
+    else response = "Отличный вопрос! Для детального ответа лучше всего связаться с нашим прорабом. Нажмите зеленую кнопку WhatsApp внизу экрана или оставьте заявку.";
+    
     botMsg.textContent = response;
     chatBody.appendChild(botMsg);
     chatBody.scrollTop = chatBody.scrollHeight;
   }, 1000); 
+}
+
+
+// --- 4. НОВОЕ: ЛОГИКА МОДАЛЬНОГО ОКНА (УСЛУГИ) ---
+const serviceData = {
+  "Покраска": {
+    title: "Покраска стен и потолков",
+    image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=800&q=80",
+    desc: "Профессиональная покраска — это не просто нанесение краски. Это идеально ровная поверхность. Мы выполняем полный цикл работ: демонтаж старого покрытия, штукатурка, шпаклёвка (2-3 слоя), грунтовка и финишная покраска премиальными материалами. Работаем без пыли и грязи.",
+    list: [
+      "Идеальное выравнивание стен (до 1 мм)",
+      "Использование экологичных красок (Tikkurila, Caparol)",
+      "Защита мебели и полов от краски",
+      "Уборка после завершения работ"
+    ],
+    price: "от 380 ₽/м²",
+    calcValue: "Покраска"
+  },
+  "Плитка": {
+    title: "Укладка плитки и керамогранита",
+    image: "https://images.unsplash.com/photo-1604709177225-055f99402ea3?auto=format&fit=crop&w=800&q=80",
+    desc: "Укладка плитки в санузлах, на кухне и в коридорах. Мы обеспечиваем надежную гидроизоляцию, чтобы защитить ваших соседей от протечек. Работаем с любым форматом плитки, включая крупноформатный керамогранит и мозаику.",
+    list: [
+      "Гидроизоляция пола и стен в санузлах",
+      "Идеальная геометрия швов",
+      "Установка люков для сантехники",
+      "Затирка швов (эпоксидная или цементная)"
+    ],
+    price: "от 800 ₽/м²",
+    calcValue: "Плитка"
+  },
+  "Электрика": {
+    title: "Монтаж электрики под ключ",
+    image: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=800&q=80",
+    desc: "Электрика — это безопасность вашего дома. Мы проектируем и собираем электрощиты, прокладываем кабели, устанавливаем розетки и выключатели. Строго соблюдаем нормы ПУЭ. Все соединения выполняются в распределительных коробках.",
+    list: [
+      "Сборка и подключение электрощита",
+      "Штробление стен и прокладка кабеля",
+      "Установка розеток, выключателей и светильников",
+      "Замер сопротивления изоляции и проверка работы"
+    ],
+    price: "от 450 ₽/точка",
+    calcValue: "Электрика"
+  },
+  "Сантехника": {
+    title: "Сантехнические работы",
+    image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80",
+    desc: "Замена труб, установка сантехники, подключение стиральных и посудомоечных машин. Мы работаем с полипропиленом, металлопластиком и медью. Устанавливаем счетчики учета воды с опломбировкой.",
+    list: [
+      "Разводка труб ХВС и ГВС",
+      "Установка унитазов, ванн, душевых кабин",
+      "Установка счетчиков и фильтров",
+      "Подключение бытовой техники"
+    ],
+    price: "от 2000 ₽/точка",
+    calcValue: "Сантехника"
+  }
+};
+
+let currentServiceName = "";
+
+// Открытие модального окна при клике на услугу
+document.querySelectorAll('.svc').forEach(card => {
+  card.addEventListener('click', function() {
+    const serviceName = this.getAttribute('data-service');
+    const data = serviceData[serviceName];
+    
+    if (data) {
+      currentServiceName = data.calcValue;
+      
+      // Заполняем окно
+      document.getElementById('modalImg').src = data.image;
+      document.getElementById('modalTitle').textContent = data.title;
+      document.getElementById('modalDesc').textContent = data.desc;
+      document.getElementById('modalPrice').textContent = data.price;
+      
+      // Заполняем список
+      const listEl = document.getElementById('modalList');
+      listEl.innerHTML = '';
+      data.list.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        listEl.appendChild(li);
+      });
+
+      // Показываем окно
+      const modal = document.getElementById('serviceModal');
+      modal.style.display = 'flex';
+      setTimeout(() => modal.classList.add('active'), 10); // Для анимации
+      document.body.style.overflow = 'hidden'; // Отключаем прокрутку сайта
+    }
+  });
+});
+
+// Закрытие модального окна
+function closeModal() {
+  const modal = document.getElementById('serviceModal');
+  modal.classList.remove('active');
+  setTimeout(() => modal.style.display = 'none', 300);
+  document.body.style.overflow = 'auto';
+}
+
+// Закрытие по клику на темный фон
+document.getElementById('serviceModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// Кнопка "Рассчитать стоимость" ВНУТРИ модального окна
+function calcFromModal() {
+  closeModal();
+  
+  // Устанавливаем услугу в калькулятор
+  const typeEl = document.getElementById('type');
+  if (currentServiceName) {
+    typeEl.value = currentServiceName;
+    
+    // Вызываем обновление калькулятора
+    if (typeof updateCalc === 'function') {
+      updateCalc();
+    }
+  }
+  
+  // Плавно скроллим к калькулятору
+  setTimeout(() => {
+    document.getElementById('calc').scrollIntoView({ behavior: 'smooth' });
+    // Подсвечиваем калькулятор
+    const calcBlock = document.querySelector('.calc');
+    calcBlock.style.boxShadow = '0 0 40px rgba(255, 107, 44, 0.8)';
+    setTimeout(() => { calcBlock.style.boxShadow = 'var(--shadow)'; }, 1500);
+  }, 350);
 }
 </script>
 
