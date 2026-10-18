@@ -13,7 +13,8 @@
 }
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.5}
+/* Добавлен padding-bottom, чтобы нижняя панель не перекрывала контент */
+body{margin:0;font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.5;padding-bottom:80px}
 h1,h2,h3{font-family:'Space Grotesk',sans-serif;margin:0;line-height:1.1}
 h1{font-size:32px}
 h2{font-size:24px;margin-bottom:20px}
@@ -90,10 +91,11 @@ footer{text-align:center;padding:30px 0 100px;color:var(--muted);font-size:14px}
 <div class="section wrap">
   <h2>Наши работы</h2>
   <div class="gal">
-    <img src="https://picsum.photos/seed/remont1/600/400" alt="Ремонт 1">
-    <img src="https://picsum.photos/seed/remont2/600/400" alt="Ремонт 2">
-    <img src="https://picsum.photos/seed/remont3/600/400" alt="Ремонт 3">
-    <img src="https://picsum.photos/seed/remont4/600/400" alt="Ремонт 4">
+    <!-- Заменил картинки с бобрами на нормальный ремонт -->
+    <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=80" alt="Ремонт 1">
+    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80" alt="Ремонт 2">
+    <img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=600&q=80" alt="Ремонт 3">
+    <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80" alt="Ремонт 4">
   </div>
 </div>
 
