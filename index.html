@@ -8,52 +8,32 @@
 <meta name="description" content="Полный спектр ремонтных работ в Ханты-Мансийске: покраска, шпаклёвка, плитка и санузлы, электрика, сантехника, фасады. Бесплатный замер, смета до начала работ.">
 <link rel="canonical" href="https://zairovabdulmone881-rgb.github.io/Stroykompas/">
 
+<!-- Иконки сайта (если файлов нет — просто не будет иконки) -->
 <link rel="icon" href="favicon.ico" sizes="any">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
 
+<!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
-<meta property="og:site_name" content="Строй Компас">
-<meta property="og:title" content="Строй Компас — ремонт, отделка, плитка, электрика в Ханты-Мансийске">
-<meta property="og:description" content="Полный спектр ремонтных работ в Ханты-Мансийске: покраска, шпаклёвка, плитка и санузлы, электрика, сантехника, фасады.">
+<meta property="og:title" content="Строй Компас — ремонт и отделка в Ханты-Мансийске">
+<meta property="og:description" content="Покраска, плитка, электрика, сантехника. Бесплатный замер.">
 <meta property="og:url" content="https://zairovabdulmone881-rgb.github.io/Stroykompas/">
-<meta property="og:image" content="https://zairovabdulmone881-rgb.github.io/Stroykompas/og-cover.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
 
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Строй Компас — ремонт и отделка в Ханты-Мансийске">
-<meta name="twitter:description" content="Покраска, плитка, электрика, сантехника. Бесплатный замер, смета до начала работ.">
-<meta name="twitter:image" content="https://zairovabdulmone881-rgb.github.io/Stroykompas/og-cover.jpg">
-
-<!-- GA4: замените G-XXXXXXX на свой ID -->
+<!-- Google Analytics (если не нужен — удалите эти 3 строки) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XXXXXXX');
+  gtag('js', new Date()); gtag('config', 'G-XXXXXXX');
 </script>
 
+<!-- Структурированные данные -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "Строй Компас",
-  "description": "Ремонт и отделка в Ханты-Мансийске: покраска, шпаклёвка, плитка и санузлы, электрика, сантехника, фасады.",
-  "url": "https://zairovabdulmone881-rgb.github.io/Stroykompas/",
   "telephone": "+7-996-688-99-79",
-  "image": "https://zairovabdulmone881-rgb.github.io/Stroykompas/og-cover.jpg",
-  "priceRange": "₽₽",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Ханты-Мансийск",
-    "addressRegion": "ХМАО — Югра",
-    "addressCountry": "RU"
-  },
-  "areaServed": { "@type": "City", "name": "Ханты-Мансийск" },
-  "openingHours": "Mo-Su 09:00-20:00"
+  "address": { "@type": "PostalAddress", "addressLocality": "Ханты-Мансийск" }
 }
 </script>
 
@@ -68,38 +48,25 @@
     --bg:#12172B;--ink:#EEF0F8;--card:#1B2240;--muted:#A3ABC8;--line:#2E375C;--blue:#8FA3FF;--hd:#12172B;
   }
 }
-:root[data-theme="dark"]{--bg:#12172B;--ink:#EEF0F8;--card:#1B2240;--muted:#A3ABC8;--line:#2E375C;--blue:#8FA3FF;--hd:#12172B}
-
-html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px);scroll-behavior:smooth}
+html{scroll-padding-top:70px;scroll-behavior:smooth}
 *,*::before,*::after{box-sizing:border-box}
-body{
-  margin:0;font-family:"Golos Text",system-ui,sans-serif;background:var(--bg);color:var(--ink);
-  font-size:17px;line-height:1.55;
-  padding-top:env(safe-area-inset-top,0px);
-  padding-bottom:env(safe-area-inset-bottom,0px);
-}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--hd);z-index:10}
+body{margin:0;font-family:"Golos Text",system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:17px;line-height:1.55}
 h1,h2,h3{font-family:Unbounded,"Golos Text",sans-serif;font-weight:600;line-height:1.12;margin:0}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--blue);outline-offset:3px}
 .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-
 .skip-link{position:absolute;left:-9999px;top:0;z-index:100;background:var(--accent);color:var(--on-accent);padding:12px 20px;font-weight:600;border-radius:0 0 10px 0;text-decoration:none}
 .skip-link:focus{left:0}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:11;background:var(--hd);border-bottom:1px solid var(--line)}
+header{position:sticky;top:0;z-index:11;background:var(--hd);border-bottom:1px solid var(--line)}
 header .wrap{display:flex;justify-content:space-between;align-items:center;height:62px;gap:12px}
 .logo{font-family:Unbounded,sans-serif;font-weight:600;font-size:20px;text-decoration:none}
 nav{display:flex;gap:22px}
 nav a{text-decoration:none;color:var(--muted);font-size:15px}
 nav a:hover{color:var(--ink)}
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--accent);color:var(--on-accent);
-  font-weight:600;border:0;border-radius:12px;padding:14px 26px;text-decoration:none;cursor:pointer;font-size:17px;
-  font-family:inherit;transition:transform .15s ease, filter .15s ease, box-shadow .15s ease;
-}
-.btn:hover{filter:brightness(1.05);transform:translateY(-1px);box-shadow:0 6px 16px rgba(0,0,0,.10)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--accent);color:var(--on-accent);font-weight:600;border:0;border-radius:12px;padding:14px 26px;text-decoration:none;cursor:pointer;font-size:17px;font-family:inherit;transition:transform .15s, filter .15s}
+.btn:hover{filter:brightness(1.05);transform:translateY(-1px)}
 .btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink)}
 .hd-call{padding:9px 18px;font-size:15px}
 
@@ -108,17 +75,14 @@ nav a:hover{color:var(--ink)}
 .hero p{font-size:19px;color:var(--muted);max-width:46ch;margin:20px 0 28px}
 .cta{display:flex;flex-wrap:wrap;gap:12px}
 .facts{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:26px;color:var(--muted);font-size:15px}
-.fan{width:100%;max-width:400px;justify-self:center;overflow:visible}
-.chip{transform:rotate(var(--a));transform-origin:60px 270px;animation:fan 1.2s cubic-bezier(.2,.8,.2,1) both}
-@keyframes fan{from{transform:rotate(0deg)}}
 
 section{padding:64px 0;border-top:1px solid var(--line)}
 section h2{font-size:clamp(24px,4vw,36px);margin-bottom:12px}
 .lead{color:var(--muted);max-width:56ch;margin:0 0 32px}
 
-/* Карточки услуг */
+/* Карточки */
 .services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.svc-card{display:flex;flex-direction:column;gap:10px;padding:22px;border-radius:16px;background:var(--card);border:1px solid var(--line);text-decoration:none;color:inherit;transition:transform .15s ease, box-shadow .2s ease, border-color .2s ease}
+.svc-card{display:flex;flex-direction:column;gap:10px;padding:22px;border-radius:16px;background:var(--card);border:1px solid var(--line);text-decoration:none;color:inherit;transition:transform .15s, box-shadow .2s}
 .svc-card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.08);border-color:var(--accent)}
 .svc-ico{width:44px;height:44px;border-radius:12px;background:var(--accent);display:flex;align-items:center;justify-content:center;color:var(--on-accent)}
 .svc-ico svg{width:24px;height:24px}
@@ -126,20 +90,16 @@ section h2{font-size:clamp(24px,4vw,36px);margin-bottom:12px}
 .svc-card p{margin:0;color:var(--muted);font-size:15px}
 .svc-card b{margin-top:auto;color:var(--ink);font-size:15px}
 
-/* Детальные секции */
+/* Детали */
 .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
-.detail-text h3{font-size:20px;margin:0 0 10px}
-.detail-text p{color:var(--muted);margin:0 0 14px}
 .price-list{list-style:none;padding:0;margin:0;border-top:1px solid var(--line)}
 .price-list li{display:flex;justify-content:space-between;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--line);gap:14px}
-.price-list li span{font-size:16px}
-.price-list li b{white-space:nowrap;font-size:16px}
 .photos-mini{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .photos-mini img{width:100%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:12px;background:var(--line);display:block}
 
 /* Галерея */
 .gal{column-count:3;column-gap:12px}
-.gal button{display:block;width:100%;padding:0;border:0;margin:0 0 12px;border-radius:12px;overflow:hidden;cursor:zoom-in;background:var(--card);break-inside:avoid;transition:transform .15s ease}
+.gal button{display:block;width:100%;padding:0;border:0;margin:0 0 12px;border-radius:12px;overflow:hidden;cursor:zoom-in;background:var(--card);break-inside:avoid;transition:transform .15s}
 .gal button:hover{transform:scale(1.015)}
 .gal img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
 @media(max-width:760px){.gal{column-count:2;column-gap:8px}.gal button{margin-bottom:8px}}
@@ -148,14 +108,13 @@ section h2{font-size:clamp(24px,4vw,36px);margin-bottom:12px}
 .lb.on{display:flex}
 .lb img{max-width:100%;max-height:78vh;border-radius:10px}
 .lb p{color:#fff;margin:0;text-align:center}
-.lb button{position:absolute;top:calc(env(safe-area-inset-top,0px) + 10px);right:16px;background:none;border:0;color:#fff;font-size:38px;line-height:1;cursor:pointer}
+.lb button{position:absolute;top:10px;right:16px;background:none;border:0;color:#fff;font-size:38px;cursor:pointer}
 
 .calc{display:grid;grid-template-columns:1fr 1fr;gap:28px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px}
 label{display:block;font-weight:500;margin-bottom:6px}
 select,input[type=number]{width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit}
 .f{margin-bottom:16px}
 .chk{display:flex;gap:10px;align-items:center;font-weight:400}
-.chk input{width:22px;height:22px;accent-color:var(--blue)}
 .res{display:flex;flex-direction:column;justify-content:center;gap:10px}
 .res .sum{font-family:Unbounded,sans-serif;font-size:clamp(30px,6vw,46px);font-weight:600}
 .res small{color:var(--muted)}
@@ -163,11 +122,7 @@ select,input[type=number]{width:100%;padding:12px 14px;border-radius:10px;border
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:s;padding:0;list-style:none;margin:0}
 .steps li{counter-increment:s;border-top:4px solid var(--accent);padding-top:14px}
 .steps li::before{content:counter(s);font-family:Unbounded,sans-serif;font-weight:600;font-size:28px;display:block;margin-bottom:6px}
-.steps b{display:block;margin-bottom:4px}
-.steps span{color:var(--muted);font-size:16px}
 .why{display:grid;grid-template-columns:1fr 1fr;gap:32px 48px}
-.why h3{font-size:17px;font-family:"Golos Text",sans-serif;margin-bottom:4px}
-.why p{margin:0;color:var(--muted);font-size:16px}
 
 details{border-bottom:1px solid var(--line);padding:16px 0}
 details:first-of-type{border-top:2px solid var(--ink)}
@@ -182,25 +137,19 @@ footer{border-top:1px solid var(--line);padding:24px 0 96px;color:var(--muted);f
 
 .lead-form{display:grid;gap:12px;max-width:520px}
 .lead-form input,.lead-form textarea{width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit}
-.lead-form small{color:var(--muted)}
 .hp{position:absolute;left:-9999px}
-#fmsg{font-weight:500}
 
+.bar{display:none}
 @media(max-width:980px){.services{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:760px){
   nav{display:none}
-  .hero{grid-template-columns:1fr;padding-top:28px}
-  .fan{max-width:260px;order:-1;justify-self:start}
+  .hero{grid-template-columns:1fr}
   .services{grid-template-columns:1fr}
-  .detail-grid{grid-template-columns:1fr}
-  .calc,.why,.contact{grid-template-columns:1fr}
+  .detail-grid,.calc,.why,.contact{grid-template-columns:1fr}
   .steps{grid-template-columns:1fr 1fr}
   .hd-call{display:none}
-  .bar{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:fixed;left:0;right:0;bottom:0;z-index:12;background:var(--hd);border-top:1px solid var(--line);padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px))}
-  .bar .btn{padding:12px 8px}
+  .bar{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:fixed;left:0;right:0;bottom:0;z-index:12;background:var(--hd);border-top:1px solid var(--line);padding:10px 14px}
 }
-.bar{display:none}
-@media(prefers-reduced-motion:reduce){.chip{animation:none}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
@@ -224,123 +173,247 @@ footer{border-top:1px solid var(--line);padding:24px 0 96px;color:var(--muted);f
 <div class="wrap hero">
   <div>
     <h1>Ремонт и отделка в Ханты-Мансийске под ключ</h1>
-    <p>Покраска, шпаклёвка, плитка и санузлы, электрика, сантехника, фасады. Сначала замер и фиксированная смета, потом работа: вы заранее знаете цену и срок. <a href="#uslugi">Смотреть все услуги</a>.</p>
+    <p>Покраска, шпаклёвка, плитка и санузлы, электрика, сантехника. Сначала замер и фиксированная смета, потом работа.</p>
     <div class="cta">
       <a class="btn" href="#raschet">Рассчитать стоимость</a>
       <a class="btn ghost" data-link="wa">Написать в WhatsApp</a>
     </div>
-    <div class="facts"><span>Замер бесплатно</span><span>Смета до начала работ</span><span>Гарантия на работы</span></div>
+    <div class="facts"><span>Замер бесплатно</span><span>Смета до начала работ</span><span>Гарантия</span></div>
   </div>
-  <svg class="fan" viewBox="0 0 320 300" role="img" aria-label="Веер образцов цвета">
-    <g class="chip" style="--a:0deg"><rect x="30" y="30" width="60" height="240" rx="6" fill="#EEF1F4" stroke="#B8C0CC"/><rect x="30" y="214" width="60" height="56" rx="6" fill="#fff"/><text x="60" y="246" font-size="9" text-anchor="middle" fill="#1B2340" font-family="Golos Text,sans-serif">Белый снег</text></g>
-    <g class="chip" style="--a:18deg"><rect x="30" y="30" width="60" height="240" rx="6" fill="#2F5D50"/><rect x="30" y="214" width="60" height="56" rx="6" fill="#fff"/><text x="60" y="246" font-size="9" text-anchor="middle" fill="#1B2340" font-family="Golos Text,sans-serif">Тайга</text></g>
-    <g class="chip" style="--a:36deg"><rect x="30" y="30" width="60" height="240" rx="6" fill="#2F6FB5"/><rect x="30" y="214" width="60" height="56" rx="6" fill="#fff"/><text x="60" y="246" font-size="9" text-anchor="middle" fill="#1B2340" font-family="Golos Text,sans-serif">Иртыш</text></g>
-    <g class="chip" style="--a:54deg"><rect x="30" y="30" width="60" height="240" rx="6" fill="#E8704A"/><rect x="30" y="214" width="60" height="56" rx="6" fill="#fff"/><text x="60" y="246" font-size="9" text-anchor="middle" fill="#1B2340" font-family="Golos Text,sans-serif">Закат</text></g>
-    <g class="chip" style="--a:72deg"><rect x="30" y="30" width="60" height="240" rx="6" fill="#3A3F4B"/><rect x="30" y="214" width="60" height="56" rx="6" fill="#fff"/><text x="60" y="246" font-size="9" text-anchor="middle" fill="#1B2340" font-family="Golos Text,sans-serif">Графит</text></g>
-    <circle cx="60" cy="262" r="5" fill="#1B2340"/>
-  </svg>
 </div>
 
 <section id="uslugi"><div class="wrap">
   <h2>Что мы делаем</h2>
-  <p class="lead">От покраски одной стены до ремонта санузла и разводки электрики. Нажмите на карточку — узнаете детали и цены.</p>
   <div class="services" id="services"></div>
 </div></section>
 
 <section id="plitka"><div class="wrap">
   <h2>Плитка и санузлы</h2>
-  <p class="lead">Укладка керамической плитки, керамогранита, мозаики. Ремонт санузлов «под ключ» — от демонтажа до подключения сантехники.</p>
   <div class="detail-grid">
     <div class="detail-text">
-      <h3>Что входит в работу</h3>
-      <p>Укладываем крупноформатный керамогранит (до 120×60 см), мозаику и фактурную плитку. Делаем санузлы «под ключ»: демонтаж, гидроизоляция, укладка, монтаж инсталляции, установка трапа в душевой, устройство ниш под полки, подключение сантехники. Работаем с плиткой любого формата и швами до 1,5 мм.</p>
+      <p>Укладываем крупноформатный керамогранит, мозаику и фактурную плитку. Ремонт санузлов «под ключ»: демонтаж, гидроизоляция, монтаж инсталляции, установка трапа и ниш.</p>
       <ul class="price-list">
         <li><span>Укладка плитки на стены</span><b>от 900 ₽/м²</b></li>
         <li><span>Укладка плитки на пол</span><b>от 800 ₽/м²</b></li>
         <li><span>Укладка мозаики</span><b>от 1 500 ₽/м²</b></li>
-        <li><span>Гидроизоляция санузла</span><b>от 350 ₽/м²</b></li>
-        <li><span>Демонтаж плитки со стен</span><b>от 250 ₽/м²</b></li>
-        <li><span>Демонтаж плитки с пола</span><b>от 200 ₽/м²</b></li>
-        <li><span>Демонтаж плиточного клея</span><b>от 310 ₽/м²</b></li>
-        <li><span>Демонтаж ванной комнаты</span><b>от 310 ₽/м²</b></li>
-        <li><span>Демонтаж сантехприборов</span><b>от 620 ₽/шт</b></li>
-        <li><span>Ремонт санузла «под ключ»</span><b>по смете</b></li>
+        <li><span>Гидроизоляция</span><b>от 350 ₽/м²</b></li>
+        <li><span>Демонтаж плитки</span><b>от 250 ₽/м²</b></li>
+        <li><span>Демонтаж сантехники</span><b>от 620 ₽/шт</b></li>
       </ul>
-      <p style="color:var(--muted);margin-top:14px;font-size:14px">⚠️ Цены ориентировочные. Точную стоимость назовём после замера.</p>
     </div>
-    <div class="photos-mini" id="plitka-photos" aria-label="Примеры работ по плитке"></div>
+    <div class="photos-mini" id="plitka-photos"></div>
   </div>
 </div></section>
 
 <section id="inzhenerka"><div class="wrap">
   <h2>Электрика и сантехника</h2>
-  <p class="lead">Монтаж и замена проводки, розеток, светильников. Разводка труб, установка сантехники, устранение протечек.</p>
   <div class="detail-grid">
     <div class="detail-text">
-      <h3>Что входит в работу</h3>
-      <p>Монтируем проводку в штробах и гофре, собираем электрощиты с УЗО и автоматами, устанавливаем розетки, выключатели и светильники. По сантехнике — разводка труб коллектором, установка счётчиков, унитазов с инсталляцией, смесителей, ванн, душевых кабин и трапов. Соблюдаем нормы ПУЭ и СНиП.</p>
+      <p>Монтаж проводки в штробах, сборка щитов, установка сантехники. Разводка труб, счётчики, трапы.</p>
       <ul class="price-list">
-        <li><span>Монтаж розетки / выключателя</span><b>от 450 ₽/шт</b></li>
-        <li><span>Штробление стен под кабель</span><b>от 370 ₽/м</b></li>
+        <li><span>Монтаж розетки</span><b>от 450 ₽/шт</b></li>
+        <li><span>Штробление</span><b>от 370 ₽/м</b></li>
         <li><span>Прокладка кабеля</span><b>от 50 ₽/м</b></li>
-        <li><span>Установка люстры / светильника</span><b>от 800 ₽/шт</b></li>
-        <li><span>Демонтаж старой проводки</span><b>от 150 ₽/м</b></li>
-        <li><span>Разводка труб в санузле</span><b>от 2 000 ₽/точка</b></li>
+        <li><span>Разводка труб</span><b>от 2 000 ₽/точка</b></li>
         <li><span>Установка унитаза</span><b>от 2 000 ₽</b></li>
-        <li><span>Установка смесителя</span><b>от 1 200 ₽</b></li>
-        <li><span>Установка ванны / душевой</span><b>от 3 500 ₽</b></li>
-        <li><span>Демонтаж сантехники</span><b>от 620 ₽/шт</b></li>
+        <li><span>Установка ванны</span><b>от 3 500 ₽</b></li>
       </ul>
-      <p style="color:var(--muted);margin-top:14px;font-size:14px"> Цены ориентировочные. Точную стоимость назовём после замера.</p>
     </div>
-    <div class="photos-mini" id="inzhenerka-photos" aria-label="Примеры работ по электрике и сантехнике"></div>
+    <div class="photos-mini" id="inzhenerka-photos"></div>
   </div>
 </div></section>
 
 <section id="primery"><div class="wrap">
   <h2>Примеры отделки</h2>
-  <p class="lead">Покраска, декоративные штукатурки и панели. Нажмите на фото, чтобы рассмотреть крупнее.</p>
   <div class="gal" id="gal"></div>
 </div></section>
 
 <section id="raschet"><div class="wrap">
-  <h2>Узнайте примерную стоимость за минуту</h2>
-  <p class="lead">Выберите вид работ и укажите площадь. Мастер уточнит цену на замере.</p>
+  <h2>Рассчитать стоимость</h2>
   <div class="calc">
     <div>
-      <div class="f">
-        <label for="type">Вид работ</label>
-        <select id="type"></select>
-      </div>
-      <div class="f">
-        <label for="area">Площадь, м²</label>
-        <input id="area" type="number" min="1" max="5000" value="50" inputmode="numeric">
-      </div>
-      <label class="chk">
-        <input id="prep" type="checkbox">
-        Нужна подготовка: шпаклёвка и грунтовка
-      </label>
+      <div class="f"><label for="type">Вид работ</label><select id="type"></select></div>
+      <div class="f"><label for="area">Площадь, м²</label><input id="area" type="number" min="1" max="5000" value="50"></div>
+      <label class="chk"><input id="prep" type="checkbox"> Нужна подготовка (шпаклёвка и грунтовка)</label>
     </div>
-    <div class="res" aria-live="polite">
-      <small>Ориентировочная стоимость работ</small>
+    <div class="res">
+      <small>Примерная стоимость</small>
       <div class="sum" id="sum">—</div>
-      <small id="note">Материалы считаем отдельно, по вашему выбору.</small>
-      <a class="btn" id="order" data-link="wa">Отправить расчёт мастеру</a>
+      <a class="btn" id="order" data-link="wa">Отправить мастеру</a>
     </div>
   </div>
 </div></section>
 
 <section id="etapy"><div class="wrap">
   <h2>Как мы работаем</h2>
-  <p class="lead">Четыре шага от звонка до сдачи объекта.</p>
   <ol class="steps">
-    <li><b>Замер</b><span>Приезжаем, смотрим стены, считаем площадь. Бесплатно.</span></li>
-    <li><b>Смета и договор</b><span>Фиксируем цену, материалы и сроки в договоре.</span></li>
-    <li><b>Работа</b><span>Закрываем мебель и пол, красим, убираем за собой.</span></li>
-    <li><b>Сдача</b><span>Проверяем вместе с вами при дневном свете и подписываем акт.</span></li>
+    <li><b>Замер</b><span>Бесплатно</span></li>
+    <li><b>Смета</b><span>Фиксируем цену</span></li>
+    <li><b>Работа</b><span>Убираем за собой</span></li>
+    <li><b>Сдача</b><span>Подписываем акт</span></li>
   </ol>
 </div></section>
 
 <section id="o-nas"><div class="wrap">
-  <h2>О компании «Строй Компас»</h2>
-  <p class="lead">Мы — команд
+  <h2>О компании</h2>
+  <p>Мы — команда мастеров из Ханты-Мансийска. Делаем ремонт от покраски до инженерки. Работаем по договору, цену не меняем в процессе. Опыт работы с местным климатом.</p>
+  <p>Полезные нормы: <a href="https://admhmansy.ru/" target="_blank" rel="noopener">Администрация Ханты-Мансийска</a>.</p>
+</div></section>
+
+<section id="voprosy"><div class="wrap">
+  <h2>Частые вопросы</h2>
+  <details><summary>Сколько занимает покраска?</summary><p>Квартиру до 50 м² с подготовкой делаем за 1–2 недели.</p></details>
+  <details><summary>Даёте гарантию?</summary><p>Да, прописываем в договоре.</p></details>
+</div></section>
+
+<section id="zayavka"><div class="wrap">
+  <h2>Оставьте заявку</h2>
+  <form class="lead-form" id="lead">
+    <input class="hp" name="site" tabindex="-1" autocomplete="off">
+    <label class="sr-only" for="lead-name">Имя</label>
+    <input id="lead-name" name="name" placeholder="Ваше имя" required>
+    <label class="sr-only" for="lead-phone">Телефон</label>
+    <input id="lead-phone" name="phone" type="tel" placeholder="Телефон" required>
+    <button class="btn" type="submit">Отправить</button>
+    <div id="fmsg" aria-live="polite"></div>
+  </form>
+</div></section>
+
+<section id="kontakty"><div class="wrap contact">
+  <div>
+    <h2>Контакты</h2>
+    <a class="phone" data-link="tel" data-phone></a>
+  </div>
+  <div>
+    <p><b>Город:</b> Ханты-Мансийск</p>
+    <p><b>Режим:</b> 9:00–20:00</p>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap">© Строй Компас</div></footer>
+
+<div class="lb" id="lb">
+  <button aria-label="Закрыть">×</button>
+  <img id="lbimg" alt="">
+  <p id="lbcap"></p>
+</div>
+
+<div class="bar"><a class="btn" data-link="tel">Позвонить</a><a class="btn" data-link="wa">Написать</a></div>
+
+<script>
+// =====================================================================
+// 1. НАСТРОЙКИ
+// =====================================================================
+const PHONE = "+79966889979";
+const WA = "79966889979";
+const LEAD_URL = "https://stroykompas-zayavk.shamanvaliev07.workers.dev";
+
+// =====================================================================
+// 2. ФОТОГРАФИИ ВАШИХ РАБОТ (ВСТАВЛЯЙТЕ СЮДА ССЫЛКИ)
+// =====================================================================
+// Для плитки (найдено 4 места для картинок)
+const PLITKA_PHOTOS = [
+  // Вставьте ссылку на вашу фотографию плитки вместо "https://placehold.co/400x400"
+  {s: "https://placehold.co/400x400?text=Фото+плитки", t: "Укладка плитки"},
+  {s: "https://placehold.co/400x400?text=Фото+плитки", t: "Санузел под ключ"},
+  {s: "https://placehold.co/400x400?text=Фото+плитки", t: "Душевая с трапом"},
+  {s: "https://placehold.co/400x400?text=Фото+плитки", t: "Мозаика"}
+];
+
+// Для инженерки (найдено 4 места для картинок)
+const INZHENERKA_PHOTOS = [
+  {s: "https://placehold.co/400x400?text=Фото+инженерки", t: "Щиток"},
+  {s: "https://placehold.co/400x400?text=Фото+инженерки", t: "Разводка труб"},
+  {s: "https://placehold.co/400x400?text=Фото+инженерки", t: "Счётчики"},
+  {s: "https://placehold.co/400x400?text=Фото+инженерки", t: "Сантехника"}
+];
+
+// Галерея "Примеры отделки" (сюда можно вставить старые фото)
+const PHOTOS = [
+  {s: "https://placehold.co/800x600?text=Пример+1", t: "Покраска"},
+  {s: "https://placehold.co/800x600?text=Пример+2", t: "Штукатурка"},
+  {s: "https://placehold.co/800x600?text=Пример+3", t: "Фасад"}
+];
+
+// =====================================================================
+// 3. ЛОГИКА (не трогайте)
+// =====================================================================
+const $ = s => document.querySelector(s);
+const fmt = n => Math.round(n).toLocaleString("ru-RU") + " ₽";
+
+const WORKS = [
+  {n:"Покраска", p:450}, {n:"Шпаклёвка", p:500}, {n:"Штукатурка", p:1000},
+  {n:"Плитка", p:900}, {n:"Электрика", p:450}, {n:"Сантехника", p:2000}
+];
+
+// Кнопки
+document.querySelectorAll("[data-link]").forEach(a=>{
+  const k = a.dataset.link;
+  a.href = k==="tel" ? "tel:"+PHONE : "https://wa.me/"+WA;
+  if(k!=="tel") a.target = "_blank";
+});
+document.querySelectorAll("[data-phone]").forEach(a=>{ a.textContent = "+7 (996) 688-99-79"; });
+
+// Карточки услуг
+const svgIco = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>';
+const SERVICES = [
+  {n:"Покраска", p:"от 450 ₽/м²", href:"#uslugi"}, {n:"Плитка", p:"от 800 ₽/м²", href:"#plitka"},
+  {n:"Электрика", p:"от 450 ₽/шт", href:"#inzhenerka"}, {n:"Сантехника", p:"от 2 000 ₽", href:"#inzhenerka"}
+];
+$("#services").innerHTML = SERVICES.map(s=>`
+  <a class="svc-card" href="${s.href}">
+    <div class="svc-ico">${svgIco}</div>
+    <h3>${s.n}</h3><b>${s.p}</b>
+  </a>`).join("");
+
+// Калькулятор
+$("#type").innerHTML = WORKS.map((w,i)=>`<option value="${i}">${w.n}</option>`).join("");
+function calc(){
+  const w = WORKS[$("#type").value];
+  const a = +$("#area").value || 0;
+  const p = $("#prep").checked ? 400 : 0;
+  $("#sum").textContent = "от " + fmt(a * (w.p + p));
+}
+["type","area","prep"].forEach(id=>$("#"+id).addEventListener("input",calc));
+calc();
+
+// Заполнение мини-галерей
+const fillMini = (sel, arr) => {
+  const el = document.querySelector(sel);
+  if (el) el.innerHTML = arr.map(p=>`<img src="${p.s}" alt="${p.t}" loading="lazy">`).join("");
+};
+fillMini("#plitka-photos", PLITKA_PHOTOS);
+fillMini("#inzhenerka-photos", INZHENERKA_PHOTOS);
+
+// Основная галерея
+$("#gal").innerHTML = PHOTOS.map((p,i)=>
+  `<button data-i="${i}"><img src="${p.s}" alt="${p.t}" loading="lazy"></button>`).join("");
+
+const lb = $("#lb");
+$("#gal").addEventListener("click", e=>{
+  const b = e.target.closest("button"); if(!b) return;
+  const p = PHOTOS[b.dataset.i];
+  $("#lbimg").src = p.s; $("#lbcap").textContent = p.t;
+  lb.classList.add("on");
+});
+lb.addEventListener("click", ()=>lb.classList.remove("on"));
+document.addEventListener("keydown", e=>{ if(e.key==="Escape") lb.classList.remove("on"); });
+
+// Форма
+$("#lead").addEventListener("submit", async e=>{
+  e.preventDefault();
+  const f = e.target, d = Object.fromEntries(new FormData(f));
+  if(d.site) return;
+  const btn = f.querySelector("button"), msg = $("#fmsg");
+  btn.disabled = true; msg.textContent = "Отправка...";
+  try {
+    await fetch(LEAD_URL, {method:"POST", body:JSON.stringify(d)});
+    msg.textContent = "Спасибо! Мы позвоним.";
+    f.reset();
+  } catch { msg.textContent = "Ошибка. Позвоните нам."; }
+  btn.disabled = false;
+});
+</script>
+</body>
+</html>
