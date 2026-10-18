@@ -10,10 +10,10 @@
 :root{
   --bg:#0F1115;--card:#1C212B;--ink:#F4F6F8;--muted:#8E96A4;
   --line:#2A313D;--accent:#FF6B2C;--on-accent:#FFFFFF;
+  --wa:#25D366; /* Цвет WhatsApp */
 }
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth}
-/* Добавлен padding-bottom, чтобы нижняя панель не перекрывала контент */
 body{margin:0;font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.5;padding-bottom:80px}
 h1,h2,h3{font-family:'Space Grotesk',sans-serif;margin:0;line-height:1.1}
 h1{font-size:32px}
@@ -22,8 +22,10 @@ p{margin:0}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
-.btn{display:inline-flex;align-items:center;justify-content:center;background:var(--accent);color:#fff;font-weight:600;border-radius:8px;padding:14px 24px;border:none;font-size:16px;text-align:center;cursor:pointer}
+.btn{display:inline-flex;align-items:center;justify-content:center;background:var(--accent);color:#fff;font-weight:600;border-radius:8px;padding:14px 24px;border:none;font-size:16px;text-align:center;cursor:pointer;transition: 0.2s;}
+.btn:hover {opacity: 0.9;}
 .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn-wa{background:var(--wa); color:#fff; margin-bottom:10px;}
 header{background:var(--bg);border-bottom:1px solid var(--line);padding:15px 0}
 header .wrap{display:flex;justify-content:space-between;align-items:center}
 .logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px}
@@ -50,6 +52,7 @@ form input{width:100%;padding:14px;margin-bottom:10px;border-radius:8px;border:1
 footer{text-align:center;padding:30px 0 100px;color:var(--muted);font-size:14px}
 .mobile-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(15,17,21,0.95);border-top:1px solid var(--line);padding:10px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;z-index:100}
 .mobile-bar .btn{padding:10px 5px;font-size:13px}
+.mobile-bar .btn-wa{background:var(--wa); border:none; margin-bottom:0;}
 @media(min-width:768px){
   h1{font-size:48px}
   .services{grid-template-columns:1fr 1fr 1fr}
@@ -91,7 +94,6 @@ footer{text-align:center;padding:30px 0 100px;color:var(--muted);font-size:14px}
 <div class="section wrap">
   <h2>Наши работы</h2>
   <div class="gal">
-    <!-- Заменил картинки с бобрами на нормальный ремонт -->
     <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=80" alt="Ремонт 1">
     <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80" alt="Ремонт 2">
     <img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=600&q=80" alt="Ремонт 3">
@@ -119,7 +121,12 @@ footer{text-align:center;padding:30px 0 100px;color:var(--muted);font-size:14px}
     </div>
     <div class="calc-res">
       <div class="sum" id="sum">275 000 ₽</div>
-      <button id="order" class="btn" style="width:100%">Отправить мастеру</button>
+      
+      <!-- Новая кнопка для WhatsApp -->
+      <a href="#" id="order-wa" class="btn btn-wa" target="_blank">Отправить в WhatsApp</a>
+      
+      <!-- Кнопка для заявки в Telegram (прокручивает вниз) -->
+      <button id="order" class="btn" style="width:100%">Жду звонка</button>
     </div>
   </div>
 </div>
@@ -130,7 +137,7 @@ footer{text-align:center;padding:30px 0 100px;color:var(--muted);font-size:14px}
     <input type="hidden" id="req-details" value="">
     <input type="text" id="name" placeholder="Ваше имя" required>
     <input type="tel" id="phone" placeholder="Телефон" required>
-    <button type="submit" class="btn" style="width:100%">Жду звонка</button>
+    <button type="submit" class="btn" style="width:100%">Отправить заявку</button>
     <div id="fmsg"></div>
   </form>
 </div>
@@ -146,9 +153,11 @@ footer{text-align:center;padding:30px 0 100px;color:var(--muted);font-size:14px}
 
 <footer>© Строй Компас</footer>
 
+<!-- Нижняя панель -->
 <div class="mobile-bar">
   <a href="tel:+79966889979" class="btn btn-ghost">Звонок</a>
-  <a href="https://wa.me/79966889979" target="_blank" class="btn">WhatsApp</a>
+  <!-- Добавлен id="wa-mobile", чтобы скрипт мог менять ссылку на лету -->
+  <a href="https://wa.me/79966889979" id="wa-mobile" target="_blank" class="btn btn-wa">WhatsApp</a>
   <a href="https://t.me/Stroykompas86_bot?start=site" target="_blank" class="btn">Telegram</a>
 </div>
 
@@ -159,6 +168,9 @@ try {
   var sumEl = document.getElementById('sum');
   var lblEl = document.getElementById('lbl');
   var reqEl = document.getElementById('req-details');
+  
+  var waBtn = document.getElementById('order-wa');
+  var waMobileBtn = document.getElementById('wa-mobile');
 
   function updateCalc() {
     var val = typeEl.value;
@@ -175,13 +187,27 @@ try {
     var total = area * rate;
     sumEl.textContent = total.toLocaleString('ru-RU') + ' ₽';
 
+    // Записываем текст для Telegram (скрытое поле)
     reqEl.value = val + ', ' + area + ' ' + unit + '. Примерная стоимость: ' + total + ' руб.';
+
+    // Формируем красивый текст для WhatsApp
+    var waText = 'Здравствуйте! Хочу заказать ремонт.\n\n' +
+                 'Вид работ: ' + val + '\n' +
+                 'Количество: ' + area + ' ' + unit + '\n' +
+                 'Примерная стоимость: ' + total.toLocaleString('ru-RU') + ' ₽';
+                 
+    var waUrl = 'https://wa.me/79966889979?text=' + encodeURIComponent(waText);
+    
+    // Обновляем ссылки на кнопках WhatsApp
+    waBtn.href = waUrl;
+    waMobileBtn.href = waUrl; // Кнопка внизу экрана теперь тоже подставляет расчет!
   }
 
   typeEl.onchange = updateCalc;
   areaEl.oninput = updateCalc;
-  updateCalc();
+  updateCalc(); // Запуск при загрузке
 
+  // Кнопка "Жду звонка" прокручивает к форме
   document.getElementById('order').onclick = function(e) {
     e.preventDefault();
     document.getElementById('zayavka').scrollIntoView({ behavior: 'smooth' });
@@ -200,7 +226,6 @@ try {
     
     msg.textContent = 'Отправляем...';
     
-    // ОТПРАВЛЯЕМ ДАННЫЕ В PIPEDREAM
     fetch('https://eoke979s3m1qnx6.m.pipedream.net', {
       method: 'POST',
       headers: {
