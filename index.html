@@ -125,7 +125,6 @@ footer{text-align:center;padding:30px 0 100px;color:var(--muted);font-size:14px}
 <div id="zayavka" class="section wrap">
   <h2>Оставить заявку</h2>
   <form id="lead">
-    <!-- Скрытое поле, куда калькулятор записывает заказ -->
     <input type="hidden" id="req-details" value="">
     <input type="text" id="name" placeholder="Ваше имя" required>
     <input type="tel" id="phone" placeholder="Телефон" required>
@@ -174,7 +173,6 @@ try {
     var total = area * rate;
     sumEl.textContent = total.toLocaleString('ru-RU') + ' ₽';
 
-    // Записываем заказ в скрытое поле, чтобы он улетел в Telegram
     reqEl.value = val + ', ' + area + ' ' + unit + '. Примерная стоимость: ' + total + ' руб.';
   }
 
@@ -182,7 +180,6 @@ try {
   areaEl.oninput = updateCalc;
   updateCalc();
 
-  // Кнопка "Отправить мастеру" плавно скроллит к форме
   document.getElementById('order').onclick = function(e) {
     e.preventDefault();
     document.getElementById('zayavka').scrollIntoView({ behavior: 'smooth' });
@@ -201,11 +198,18 @@ try {
     
     msg.textContent = 'Отправляем...';
     
-    // Отправляем имя, телефон И сам заказ в Cloudflare Worker
-    fetch('https://stroykompas-zayavk.shamanvaliev07.workers.dev', {
+    // ОТПРАВЛЯЕМ ДАННЫЕ В PIPEDREAM
+    fetch('https://eoke979s3m1qnx6.m.pipedream.net', {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({name: n, phone: p, message: req})
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        name: n,
+        phone: p,
+        message: req || 'Не указан'
+      })
     }).then(function(res){
       if(res.ok) { msg.textContent = 'Спасибо! Мы позвоним.'; document.getElementById('lead').reset(); }
       else { msg.textContent = 'Ошибка. Позвоните: +7 996 688-99-79'; }
