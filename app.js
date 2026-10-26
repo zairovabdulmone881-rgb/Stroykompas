@@ -1,6 +1,6 @@
 // Адрес вашего Cloudflare Worker, который пересылает заявки в Telegram.
 // Пока пусто — заявки открываются в WhatsApp.
-const WORKER_URL = '';
+const WORKER_URL = 'Stroykompas86_bot';
 const WA = '79966889979';
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const fmt = n => Math.round(n).toLocaleString('ru-RU') + ' ₽';
