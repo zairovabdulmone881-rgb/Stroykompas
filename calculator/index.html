@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Калькулятор стоимости — Строй Компас</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 24px 16px;
+      font-family: Arial, sans-serif;
+      background: #f5f1e9;
+      color: #292820;
+    }
+    .container {
+      max-width: 650px;
+      margin: 0 auto;
+    }
+    a { color: #77613d; }
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      margin-top: 20px;
+      box-shadow: 0 5px 24px #0000000d;
+    }
+    h1 { font-size: 28px; }
+    label {
+      display: block;
+      font-weight: bold;
+      margin: 18px 0 8px;
+    }
+    select, input {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #d7d0c4;
+      border-radius: 8px;
+      font-size: 16px;
+      background: white;
+    }
+    .total {
+      margin-top: 24px;
+      padding: 20px;
+      border-radius: 12px;
+      background: #f5f1e9;
+    }
+    .price { font-size: 30px; font-weight: bold; }
+    button {
+      width: 100%;
+      margin-top: 18px;
+      padding: 15px;
+      border: 0;
+      border-radius: 8px;
+      background: #77613d;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .note { color: #716e66; line-height: 1.5; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <a href="../index.html">← На главную</a>
+    <h1>Калькулятор стоимости</h1>
+    <p class="note">Рассчитайте предварительную стоимость строительных и отделочных работ.</p>
+
+    <section class="card">
+      <label for="service">Выберите услугу</label>
+      <select id="service">
+        <option value="380">Покраска — 380 ₽/м²</option>
+        <option value="800">Укладка плитки — 800 ₽/м²</option>
+        <option value="450">Электрика — 450 ₽/точка</option>
+        <option value="2000">Сантехника — 2 000 ₽/точка</option>
+      </select>
+
+      <label for="quantity">Количество (м² или точек)</label>
+      <input id="quantity" type="number" min="1" step="1" value="10">
+
+      <div class="total">
+        <div>Предварительная стоимость</div>
+        <div class="price" id="total">3 800 ₽</div>
+        <p class="note">Итоговая цена уточняется после согласования объёма работ.</p>
+      </div>
+
+      <button id="order">Заказать расчёт в WhatsApp</button>
+    </section>
+  </main>
+
+  <script>
+    const service = document.getElementById('service');
+    const quantity = document.getElementById('quantity');
+    const total = document.getElementById('total');
+    const order = document.getElementById('order');
+
+    function calculate() {
+      const rate = Number(service.value);
+      const amount = Math.max(0, Number(quantity.value) || 0);
+      total.textContent = (rate * amount).toLocaleString('ru-RU') + ' ₽';
+    }
+
+    service.addEventListener('change', calculate);
+    quantity.addEventListener('input', calculate);
+
+    order.addEventListener('click', function() {
+      const amount = Math.max(0, Number(quantity.value) || 0);
+      const message = 'Здравствуйте! Хочу уточнить стоимость работ. Объём: ' +
+        amount + '. Предварительная стоимость: ' +
+        (Number(service.value) * amount).toLocaleString('ru-RU') + ' ₽.';
+      window.open('https://wa.me/79966889979?text=' +
+        encodeURIComponent(message), '_blank');
+    });
+
+    calculate();
+  </script>
+</body>
+</html>
