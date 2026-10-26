@@ -1,1 +1,646 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Проекты — Строй Компас</title><link rel="stylesheet" href="/Stroykompas/assets/css/style.css"></head><body><header class="header"><div class="wrap nav"><a class="brand" href="/Stroykompas/"><span class="brand-mark">СК</span><span>СТРОЙ<span class="accent">КОМПАС</span><small>РЕМОНТ · ОТДЕЛКА · МАСТЕРА</small></span></a><button class="menu-toggle" aria-label="Открыть меню">☰</button><nav class="menu"><a href="/Stroykompas/#services">Услуги</a><a href="/Stroykompas/projects/">Проекты</a><a href="/Stroykompas/calculator/">Калькулятор</a><a href="/Stroykompas/contacts/">Контакты</a></nav><a class="button button-small" href="https://wa.me/79966889979">Обсудить ремонт ↗</a></div></header><section class="subpage-hero"><div class="wrap"><div class="breadcrumbs"><a href="/Stroykompas/">Главная</a> / Проекты</div><div class="eyebrow">ПРИМЕРЫ НАПРАВЛЕНИЙ</div><h1>Каждая деталь<br><span class="accent">имеет значение.</span></h1><p>Здесь можно показать реальные фотографии ваших работ. Пока это визуальные макеты направлений, а не подтверждённые объекты.</p></div></section><section class="content-section"><div class="wrap projects-grid"><article class="project-card"><div class="project-art"></div><div class="project-card-body"><span class="project-tag">ОТДЕЛКА</span><h3>Подготовка и покраска стен</h3><p>Ровная поверхность, аккуратные углы и чистая финишная отделка.</p></div></article><article class="project-card"><div class="project-art art2"></div><div class="project-card-body"><span class="project-tag">ПЛИТКА</span><h3>Ванная и кухонная зона</h3><p>Разметка, раскладка и внимание к геометрии швов.</p></div></article><article class="project-card"><div class="project-art art3"></div><div class="project-card-body"><span class="project-tag">КОМПЛЕКСНЫЕ РАБОТЫ</span><h3>Подготовка пространства</h3><p>Планирование работ и последовательное выполнение этапов.</p></div></article></div></section><footer class="footer"><div class="wrap footer-bottom"><span>© Строй Компас</span><a href="tel:+79966889979">+7 996 688-99-79</a></div></footer><script src="/Stroykompas/assets/js/main.js"></script></body></html>
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101719">
+<meta name="description" content="Ремонт и отделка в Ханты-Мансийске. Покраска, укладка плитки, электрика и сантехника. Рассчитайте стоимость ремонта онлайн.">
+<title>Строй Компас — ремонт и отделка в Ханты-Мансийске</title>
+
+<style>
+:root{
+  --bg:#101719;
+  --panel:#182225;
+  --panel2:#202c2f;
+  --text:#f5f3ed;
+  --muted:#a6b1ae;
+  --accent:#ed9b4b;
+  --accent2:#ffc17d;
+  --line:rgba(255,255,255,.11);
+  --radius:20px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;line-height:1.6;
+}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.container{width:min(1160px,calc(100% - 40px));margin:auto}
+header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(16,23,25,.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);
+}
+.nav{
+  min-height:76px;display:flex;align-items:center;
+  justify-content:space-between;gap:20px;
+}
+.logo{display:flex;align-items:center;gap:11px;font-weight:800;font-size:19px}
+.logo-mark{
+  width:39px;height:39px;border-radius:12px;
+  display:grid;place-items:center;
+  background:var(--accent);color:#171b19;font-weight:900;font-size:21px;
+}
+.logo small{display:block;color:var(--muted);font-size:10px;letter-spacing:2px;font-weight:500}
+.navlinks{display:flex;align-items:center;gap:23px;font-size:13px;color:#d3d9d5}
+.navlinks a:hover{color:var(--accent2)}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  border:0;border-radius:10px;padding:14px 20px;
+  background:var(--accent);color:#191d1a;font-weight:800;
+  transition:transform .2s,background .2s;
+}
+.btn:hover{transform:translateY(-2px);background:var(--accent2)}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--line)}
+.btn-outline:hover{background:var(--panel2);color:white}
+.menu-btn{display:none;background:none;color:white;border:1px solid var(--line);border-radius:9px;padding:9px 12px}
+.hero{padding:75px 0 82px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:42px}
+.eyebrow{
+  display:flex;align-items:center;gap:10px;color:var(--accent2);
+  text-transform:uppercase;letter-spacing:2px;font-size:11px;font-weight:800;
+}
+.eyebrow:before{content:"";width:27px;height:2px;background:var(--accent)}
+h1{font-size:clamp(38px,5.3vw,67px);line-height:1.06;letter-spacing:-2px;margin:22px 0}
+h1 span{color:var(--accent)}
+.hero-copy{color:var(--muted);font-size:16px;max-width:510px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin:28px 0}
+.trust{display:flex;gap:20px;flex-wrap:wrap;color:#d1d7d2;font-size:12px}
+.trust span:before{content:"✓";color:var(--accent);font-weight:bold;margin-right:7px}
+.hero-visual{
+  min-height:435px;position:relative;display:grid;place-items:center;
+  border:1px solid var(--line);border-radius:26px;overflow:hidden;
+  background:
+    radial-gradient(ellipse at 50% 65%,rgba(237,155,75,.17),transparent 48%),
+    linear-gradient(145deg,#202d30,#131b1d 72%);
+}
+.visual-label{
+  position:absolute;top:22px;left:22px;color:var(--muted);
+  font-size:10px;letter-spacing:2px;text-transform:uppercase;
+}
+.visual-tag{
+  position:absolute;right:20px;bottom:20px;padding:12px 15px;
+  background:rgba(16,23,25,.83);border:1px solid var(--line);
+  border-radius:12px;font-size:12px;color:#dce0dc;
+}
+.house-scene{width:min(410px,95%);height:auto;overflow:visible}
+.house-scene .foundation{animation:rise .8s .2s both}
+.house-scene .wall{animation:rise .8s .7s both}
+.house-scene .roof{animation:rise .8s 1.15s both}
+.house-scene .window{animation:glow 2s 1.9s both}
+.house-scene .beam{stroke-dasharray:300;stroke-dashoffset:300;animation:draw 1.4s 1.4s forwards}
+.house-scene .spark{animation:float 3s ease-in-out infinite alternate}
+@keyframes rise{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes glow{0%{opacity:.15}100%{opacity:1}}
+@keyframes float{from{transform:translateY(0)}to{transform:translateY(-10px)}}
+.stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#141d1f}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);padding:24px 0}
+.stat{padding:0 25px;border-right:1px solid var(--line)}
+.stat:first-child{padding-left:0}
+.stat:last-child{border:0}
+.stat strong{font-size:25px;color:var(--accent2);display:block}
+.stat span{font-size:12px;color:var(--muted)}
+section{padding:85px 0}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:34px}
+.section-head h2{font-size:clamp(29px,4vw,43px);line-height:1.15;letter-spacing:-1px;margin:12px 0}
+.section-head p{max-width:410px;color:var(--muted);font-size:14px;margin:0}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.service-card{
+  padding:25px 21px;background:var(--panel);border:1px solid var(--line);
+  border-radius:var(--radius);transition:transform .25s,border-color .25s;
+}
+.service-card:hover{transform:translateY(-5px);border-color:rgba(237,155,75,.55)}
+.service-icon{
+  width:47px;height:47px;display:grid;place-items:center;
+  background:rgba(237,155,75,.12);border-radius:13px;
+  font-size:23px;margin-bottom:22px;
+}
+.service-card h3{font-size:17px;margin:0 0 8px}
+.service-card p{font-size:13px;color:var(--muted);min-height:60px;margin:0 0 18px}
+.price{font-size:20px;font-weight:800;color:var(--accent2)}
+.price small{font-size:11px;font-weight:400;color:var(--muted)}
+.card-link{display:block;margin-top:18px;padding-top:14px;border-top:1px solid var(--line);font-size:12px;color:#e9d4bd}
+.calculator-section{background:#141d1f}
+.calc-grid{display:grid;grid-template-columns:1fr .85fr;gap:25px;align-items:stretch}
+.calc-panel,.result-panel{border:1px solid var(--line);border-radius:var(--radius);padding:30px;background:var(--panel)}
+.field{margin-bottom:20px}
+.field label{display:block;font-size:13px;margin-bottom:8px;color:#dce0dc}
+.field input,.field select{
+  width:100%;background:#101719;border:1px solid var(--line);
+  color:white;border-radius:9px;padding:14px;outline:none;
+}
+.field input:focus,.field select:focus{border-color:var(--accent)}
+.result-panel{display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(145deg,#283235,#192225)}
+.result-panel .muted{color:var(--muted);font-size:13px}
+.total{font-size:clamp(32px,4vw,48px);font-weight:800;color:var(--accent2);line-height:1.2;margin:10px 0}
+.result-note{font-size:12px;color:var(--muted);margin:12px 0 24px}
+.result-row{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:13px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.step{border-top:1px solid var(--line);padding-top:20px}
+.step-num{font-size:12px;color:var(--accent);letter-spacing:2px}
+.step h3{font-size:17px;margin:10px 0}
+.step p{font-size:13px;color:var(--muted);margin:0}
+.cta-band{
+  padding:38px;background:linear-gradient(115deg,#293538,#192225);
+  border:1px solid var(--line);border-radius:22px;
+  display:flex;align-items:center;justify-content:space-between;gap:25px;
+}
+.cta-band h2{font-size:clamp(24px,3.5vw,37px);line-height:1.2;margin:0 0 10px}
+.cta-band p{color:var(--muted);font-size:14px;margin:0}
+.contacts-grid{display:grid;grid-template-columns:1fr 1fr;gap:35px}
+.contact-item{display:flex;gap:14px;padding:17px 0;border-bottom:1px solid var(--line)}
+.contact-icon{width:42px;height:42px;flex-shrink:0;border-radius:12px;background:var(--panel2);display:grid;place-items:center}
+.contact-item small{display:block;color:var(--muted);font-size:12px}
+.contact-item strong{font-size:16px}
+.contact-form{padding:27px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius)}
+.contact-form h3{margin-top:0}
+.contact-form p{font-size:13px;color:var(--muted)}
+footer{padding:28px 0;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.footer-links{display:flex;gap:18px;flex-wrap:wrap}
+.disclaimer{font-size:11px;color:#87918e;margin-top:20px}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+@media(max-width:900px){
+  .navlinks{gap:13px;font-size:12px}
+  .nav>.btn{padding:11px 13px;font-size:12px}
+  .hero-grid{gap:20px}
+  .hero-visual{min-height:350px}
+  .cards{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:680px){
+  .container{width:calc(100% - 30px)}
+  .nav{min-height:66px}
+  .menu-btn{display:block}
+  .navlinks{
+    display:none;position:absolute;top:66px;left:0;right:0;
+    background:#141d1f;padding:20px;flex-direction:column;align-items:stretch;
+    border-bottom:1px solid var(--line)
+  }
+  .navlinks.open{display:flex}
+  .navlinks a{padding:8px 0;font-size:14px}
+  .nav>.btn{display:none}
+  .hero{padding:47px 0 55px}
+  .hero-grid{grid-template-columns:1fr}
+  h1{font-size:43px;letter-spacing:-1.5px}
+  .hero-copy{font-size:14px}
+  .hero-visual{min-height:315px}
+  .stats-grid{padding:18px 0}
+  .stat{padding:0 10px}
+  .stat strong{font-size:19px}
+  .stat span{font-size:10px}
+  section{padding:60px 0}
+  .section-head{display:block}
+  .section-head p{margin-top:13px}
+  .cards{gap:10px}
+  .service-card{padding:18px 14px}
+  .service-card h3{font-size:15px}
+  .service-card p{font-size:12px;min-height:72px}
+  .price{font-size:18px}
+  .calc-grid{grid-template-columns:1fr}
+  .calc-panel,.result-panel{padding:22px}
+  .steps{grid-template-columns:repeat(2,1fr);gap:25px 15px}
+  .cta-band{padding:25px;align-items:flex-start;flex-direction:column}
+  .contacts-grid{grid-template-columns:1fr;gap:25px}
+}
+@media(max-width:380px){
+  h1{font-size:36px}
+  .cards{grid-template-columns:1fr}
+  .service-card p{min-height:0}
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="container nav">
+    <a class="logo" href="#home" aria-label="Строй Компас — главная">
+      <span class="logo-mark">СК</span>
+      <span>СТРОЙ КОМПАС<small>РЕМОНТ И ОТДЕЛКА</small></span>
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-label="Открыть меню" aria-expanded="false">☰</button>
+    <nav class="navlinks" id="navLinks">
+      <a href="#services">Услуги</a>
+      <a href="#calculator">Калькулятор</a>
+      <a href="#steps">Как работаем</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <a class="btn" href="tel:+79966889979">☎ Позвонить</a>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">Ханты-Мансийск · Ремонт и отделка</div>
+      <h1>Пространство,<br>в котором <span>хочется жить.</span></h1>
+      <p class="hero-copy">
+        Ремонтные и отделочные работы для квартир, домов и помещений.
+        Поможем рассчитать стоимость и подобрать подходящее решение для вашего объекта.
+      </p>
+      <div class="hero-actions">
+        <a class="btn" href="#calculator">Рассчитать стоимость ↗</a>
+        <a class="btn btn-outline" href="#services">Наши услуги</a>
+      </div>
+      <div class="trust">
+        <span>Понятные цены</span>
+        <span>Расчёт онлайн</span>
+        <span>Связь напрямую</span>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-label="Анимация строительства дома">
+      <div class="visual-label">От идеи к результату</div>
+      <svg class="house-scene" viewBox="0 0 440 390" role="img" aria-label="Схематичная сборка современного дома">
+        <defs>
+          <linearGradient id="wall" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#f3c58f"/>
+            <stop offset="1" stop-color="#b87842"/>
+          </linearGradient>
+          <linearGradient id="roof" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ffc17d"/>
+            <stop offset="1" stop-color="#b66d35"/>
+          </linearGradient>
+          <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ffdbab"/>
+            <stop offset="1" stop-color="#8d6949"/>
+          </linearGradient>
+        </defs>
+        <ellipse cx="220" cy="320" rx="165" ry="24" fill="#ed9b4b" opacity=".09"/>
+        <g class="foundation">
+          <path d="M58 300 L220 355 L383 300 L220 247 Z" fill="#303d3d" stroke="#68736c" stroke-width="1.5"/>
+          <path d="M58 300 L220 354 L220 366 L58 312 Z" fill="#202a2b"/>
+          <path d="M220 354 L383 300 L383 312 L220 366 Z" fill="#293434"/>
+        </g>
+        <g class="wall">
+          <path d="M99 190 L220 145 L341 190 L341 292 L220 333 L99 292 Z" fill="url(#wall)" stroke="#f7d6ac" stroke-opacity=".7"/>
+          <path d="M99 190 L220 232 L220 333 L99 292 Z" fill="#d6a16b"/>
+          <path d="M220 232 L341 190 L341 292 L220 333 Z" fill="#b9814e"/>
+          <path d="M128 211 L191 233 L191 290 L128 269 Z" fill="#293739" stroke="#f4c996" stroke-width="3"/>
+          <path d="M137 219 L182 235 L182 279 L137 264 Z" fill="url(#glass)" class="window"/>
+          <path d="M244 237 L311 213 L311 272 L244 296 Z" fill="#293739" stroke="#f4c996" stroke-width="3"/>
+          <path d="M252 242 L303 224 L303 267 L252 286 Z" fill="url(#glass)" class="window"/>
+          <path d="M199 270 L239 284 L239 326 L199 312 Z" fill="#20292a" stroke="#f4c996" stroke-width="3"/>
+          <path d="M219 277 L219 319" stroke="#d2a273" stroke-width="2"/>
+        </g>
+        <g class="roof">
+          <path d="M74 191 L220 111 L366 191 L341 202 L220 139 L99 202 Z" fill="url(#roof)" stroke="#ffcf99" stroke-width="1.5"/>
+          <path d="M74 191 L220 111 L220 139 L99 202 Z" fill="#e4a66b"/>
+          <path d="M220 111 L366 191 L341 202 L220 139 Z" fill="#b97540"/>
+          <path d="M91 183 L220 119 L349 183" fill="none" stroke="#ffdbb2" stroke-opacity=".8" stroke-width="2"/>
+        </g>
+        <g fill="none" stroke="#ed9b4b" stroke-width="1.5" opacity=".85" class="beam">
+          <path d="M44 128 L44 73 L104 73"/>
+          <path d="M333 86 L391 86 L391 139"/>
+          <path d="M66 244 L38 244 L38 275"/>
+        </g>
+        <g class="spark" fill="#ffc17d">
+          <circle cx="89" cy="104" r="3"/>
+          <circle cx="354" cy="117" r="2.5"/>
+          <circle cx="374" cy="252" r="3"/>
+          <circle cx="112" cy="319" r="2"/>
+        </g>
+      </svg>
+      <div class="visual-tag">Ваш проект начинается здесь ↗</div>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="container stats-grid">
+    <div class="stat"><strong>4 направления</strong><span>Основные виды работ</span></div>
+    <div class="stat"><strong>Онлайн</strong><span>Предварительный расчёт</span></div>
+    <div class="stat"><strong>9:00–20:00</strong><span>Ежедневно на связи</span></div>
+  </div>
+</div>
+
+<section id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Что мы делаем</div>
+        <h2>Услуги и ориентировочные цены</h2>
+      </div>
+      <p>Стоимость зависит от площади, состояния поверхности, сложности и объёма работ. Итоговую смету необходимо согласовать отдельно.</p>
+    </div>
+
+    <div class="cards">
+      <article class="service-card reveal">
+        <div class="service-icon">▧</div>
+        <h3>Покраска стен</h3>
+        <p>Подготовка поверхностей и малярные работы для аккуратного результата.</p>
+        <div class="price">от 380 ₽ <small>/ м²</small></div>
+        <a class="card-link" href="#calculator" data-service="painting">Рассчитать стоимость ↗</a>
+      </article>
+      <article class="service-card reveal">
+        <div class="service-icon">▦</div>
+        <h3>Укладка плитки</h3>
+        <p>Облицовка стен и пола плиткой в помещениях различного назначения.</p>
+        <div class="price">от 800 ₽ <small>/ м²</small></div>
+        <a class="card-link" href="#calculator" data-service="tiling">Рассчитать стоимость ↗</a>
+      </article>
+      <article class="service-card reveal">
+        <div class="service-icon">ϟ</div>
+        <h3>Электрика</h3>
+        <p>Электромонтажные работы с учётом задач и особенностей помещения.</p>
+        <div class="price">от 450 ₽ <small>/ точка</small></div>
+        <a class="card-link" href="#calculator" data-service="electrical">Рассчитать стоимость ↗</a>
+      </article>
+      <article class="service-card reveal">
+        <div class="service-icon">⌁</div>
+        <h3>Сантехника</h3>
+        <p>Работы по установке и подключению сантехнического оборудования.</p>
+        <div class="price">от 2 000 ₽ <small>/ точка</small></div>
+        <a class="card-link" href="#calculator" data-service="plumbing">Рассчитать стоимость ↗</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="calculator-section" id="calculator">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Планирование бюджета</div>
+        <h2>Калькулятор стоимости</h2>
+      </div>
+      <p>Укажите вид работ и объём. Калькулятор покажет предварительную сумму по базовым ценам.</p>
+    </div>
+
+    <div class="calc-grid reveal">
+      <div class="calc-panel">
+        <div class="field">
+          <label for="service">Выберите услугу</label>
+          <select id="service">
+            <option value="painting">Покраска стен — за м²</option>
+            <option value="tiling">Укладка плитки — за м²</option>
+            <option value="electrical">Электрика — за точку</option>
+            <option value="plumbing">Сантехника — за точку</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="quantity" id="quantityLabel">Площадь работ, м²</label>
+          <input id="quantity" type="number" min="1" max="100000" value="50" inputmode="decimal">
+        </div>
+        <div class="field">
+          <label for="phone">Ваш телефон (необязательно)</label>
+          <input id="phone" type="tel" placeholder="+7 ___ ___-__-__">
+        </div>
+        <button class="btn" id="calculateBtn" type="button" style="width:100%">Рассчитать стоимость</button>
+      </div>
+
+      <div class="result-panel">
+        <div>
+          <div class="eyebrow">Предварительная оценка</div>
+          <div class="muted" style="margin-top:15px">Ориентировочная стоимость</div>
+          <div class="total" id="total">19 000 ₽</div>
+          <p class="result-note">Это предварительный расчёт по базовым расценкам, а не окончательная смета.</p>
+          <div class="result-row"><span>Вид работ</span><strong id="resultService">Покраска стен</strong></div>
+          <div class="result-row"><span>Объём</span><strong id="resultQuantity">50 м²</strong></div>
+          <div class="result-row"><span>Цена за единицу</span><strong id="resultPrice">380 ₽</strong></div>
+        </div>
+        <a class="btn" id="whatsappCalc" href="https://wa.me/79966889979" target="_blank" rel="noopener noreferrer">Уточнить стоимость в WhatsApp ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="steps">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Понятный процесс</div>
+        <h2>Как начинается работа</h2>
+      </div>
+      <p>Обсуждаем задачу, уточняем детали и согласовываем стоимость до начала работ.</p>
+    </div>
+    <div class="steps">
+      <article class="step reveal">
+        <div class="step-num">01 / ЗАЯВКА</div>
+        <h3>Расскажите о задаче</h3>
+        <p>Позвоните или напишите в WhatsApp, опишите объект и желаемый результат.</p>
+      </article>
+      <article class="step reveal">
+        <div class="step-num">02 / ОБСУЖДЕНИЕ</div>
+        <h3>Уточняем детали</h3>
+        <p>Определяем объём работ, состояние поверхностей и необходимые материалы.</p>
+      </article>
+      <article class="step reveal">
+        <div class="step-num">03 / СМЕТА</div>
+        <h3>Согласовываем цену</h3>
+        <p>Уточняем расценки и состав работ. Предварительный калькулятор не заменяет смету.</p>
+      </article>
+      <article class="step reveal">
+        <div class="step-num">04 / РАБОТА</div>
+        <h3>Переходим к делу</h3>
+        <p>После согласования условий определяем порядок и сроки выполнения работ.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="cta-band reveal">
+      <div>
+        <h2>Есть идея для ремонта?</h2>
+        <p>Расскажите, что нужно сделать. Обсудим задачу и ориентировочную стоимость.</p>
+      </div>
+      <a class="btn" href="https://wa.me/79966889979?text=Здравствуйте!%20Хочу%20обсудить%20ремонт." target="_blank" rel="noopener noreferrer">Обсудить проект в WhatsApp ↗</a>
+    </div>
+  </div>
+</section>
+
+<section id="contacts">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Связаться с нами</div>
+        <h2>Обсудим ваш проект</h2>
+      </div>
+      <p>Свяжитесь удобным способом. Работаем в Ханты-Мансийске.</p>
+    </div>
+
+    <div class="contacts-grid">
+      <div class="reveal">
+        <div class="contact-item">
+          <div class="contact-icon">☎</div>
+          <div><small>Телефон</small><strong><a href="tel:+79966889979">+7 996 688-99-79</a></strong></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">◉</div>
+          <div><small>WhatsApp</small><strong><a href="https://wa.me/79966889979" target="_blank" rel="noopener noreferrer">Написать сообщение ↗</a></strong></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">⌖</div>
+          <div><small>Город</small><strong>Ханты-Мансийск</strong></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">◷</div>
+          <div><small>Время связи</small><strong>Ежедневно, 9:00–20:00</strong></div>
+        </div>
+      </div>
+
+      <form class="contact-form reveal" id="contactForm">
+        <h3>Оставить заявку</h3>
+        <p>Заполните поля — откроется WhatsApp с подготовленным сообщением.</p>
+        <div class="field">
+          <label for="name">Как к вам обращаться?</label>
+          <input id="name" name="name" placeholder="Ваше имя" required>
+        </div>
+        <div class="field">
+          <label for="contactPhone">Номер телефона</label>
+          <input id="contactPhone" name="phone" type="tel" placeholder="+7 ___ ___-__-__" required>
+        </div>
+        <div class="field">
+          <label for="message">Что нужно сделать?</label>
+          <input id="message" name="message" placeholder="Например, укладка плитки" required>
+        </div>
+        <button class="btn" type="submit" style="width:100%">Отправить заявку в WhatsApp ↗</button>
+        <div class="disclaimer">Нажимая кнопку, вы переходите в WhatsApp. Данные не отправляются на сервер этого сайта.</div>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <a class="logo" href="#home"><span class="logo-mark">СК</span><span>СТРОЙ КОМПАС<small>РЕМОНТ И ОТДЕЛКА</small></span></a>
+      <div class="footer-links">
+        <a href="#services">Услуги</a>
+        <a href="#calculator">Калькулятор</a>
+        <a href="#contacts">Контакты</a>
+      </div>
+      <span>© <span id="year"></span> Строй Компас</span>
+    </div>
+    <div class="disclaimer">Указанные цены являются ориентировочными. Итоговая стоимость зависит от условий объекта и согласованного объёма работ.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const menuBtn=document.getElementById('menuBtn');
+  const navLinks=document.getElementById('navLinks');
+
+  menuBtn.addEventListener('click',function(){
+    const opened=navLinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded',String(opened));
+    menuBtn.textContent=opened?'✕':'☰';
+  });
+
+  navLinks.querySelectorAll('a').forEach(function(link){
+    link.addEventListener('click',function(){
+      navLinks.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded','false');
+      menuBtn.textContent='☰';
+    });
+  });
+
+  const prices={
+    painting:{name:'Покраска стен',price:380,unit:'м²'},
+    tiling:{name:'Укладка плитки',price:800,unit:'м²'},
+    electrical:{name:'Электрика',price:450,unit:'точка'},
+    plumbing:{name:'Сантехника',price:2000,unit:'точка'}
+  };
+
+  const service=document.getElementById('service');
+  const quantity=document.getElementById('quantity');
+  const quantityLabel=document.getElementById('quantityLabel');
+  const total=document.getElementById('total');
+  const resultService=document.getElementById('resultService');
+  const resultQuantity=document.getElementById('resultQuantity');
+  const resultPrice=document.getElementById('resultPrice');
+  const whatsappCalc=document.getElementById('whatsappCalc');
+
+  function formatNumber(value){
+    return new Intl.NumberFormat('ru-RU').format(value);
+  }
+
+  function calculate(){
+    const item=prices[service.value];
+    let amount=Number(quantity.value);
+    if(!Number.isFinite(amount)||amount<1) amount=1;
+    amount=Math.min(amount,100000);
+    quantity.value=amount;
+
+    const sum=amount*item.price;
+    total.textContent=formatNumber(sum)+' ₽';
+    resultService.textContent=item.name;
+    resultQuantity.textContent=formatNumber(amount)+' '+item.unit;
+    resultPrice.textContent=formatNumber(item.price)+' ₽ / '+item.unit;
+    quantityLabel.textContent=item.unit==='м²'?'Площадь работ, м²':'Количество точек';
+    
+    const phone=document.getElementById('phone').value.trim();
+    const message=
+      'Здравствуйте! Хочу уточнить стоимость работ.\n'+
+      'Услуга: '+item.name+'\n'+
+      'Объём: '+amount+' '+item.unit+'\n'+
+      'Предварительный расчёт: '+formatNumber(sum)+' ₽\n'+
+      (phone?'Мой телефон: '+phone+'\n':'')+
+      'Подскажите, пожалуйста, итоговую стоимость.';
+    whatsappCalc.href='https://wa.me/79966889979?text='+encodeURIComponent(message);
+  }
+
+  document.getElementById('calculateBtn').addEventListener('click',calculate);
+  service.addEventListener('change',calculate);
+  quantity.addEventListener('input',calculate);
+  document.getElementById('phone').addEventListener('input',calculate);
+
+  document.querySelectorAll('[data-service]').forEach(function(link){
+    link.addEventListener('click',function(){
+      service.value=link.dataset.service;
+      calculate();
+    });
+  });
+
+  document.getElementById('contactForm').addEventListener('submit',function(event){
+    event.preventDefault();
+    const name=document.getElementById('name').value.trim();
+    const phone=document.getElementById('contactPhone').value.trim();
+    const message=document.getElementById('message').value.trim();
+    if(!name||!phone||!message){
+      alert('Пожалуйста, заполните все поля.');
+      return;
+    }
+    const text=
+      'Здравствуйте! Новая заявка с сайта Строй Компас.\n'+
+      'Имя: '+name+'\n'+
+      'Телефон: '+phone+'\n'+
+      'Что нужно сделать: '+message;
+    window.open('https://wa.me/79966889979?text='+encodeURIComponent(text),'_blank','noopener');
+  });
+
+  document.getElementById('year').textContent=new Date().getFullYear();
+
+  if('IntersectionObserver' in window){
+    const observer=new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(function(el){observer.observe(el);});
+  }else{
+    document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('visible');});
+  }
+
+  calculate();
+})();
+</script>
+</body>
+</html>
