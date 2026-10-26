@@ -1,5 +1,60 @@
-// Адрес вашего Cloudflare Worker, который пересылает заявки в Telegram.
-// Пока пусто — заявки открываются в WhatsApp.
+// 
+<!-- Telegram button: Строй Компас -->
+<a
+  class="telegram-float"
+  href="https://t.me/USERNAME_BOTA"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Написать в Telegram"
+>
+  <svg viewBox="0 0 24 24" width="27" height="27" fill="currentColor" aria-hidden="true">
+    <path d="M21.8 4.2 18.6 20c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.3-8.4c.4-.4-.1-.6-.6-.2L6 13.6l-4.9-1.5c-1.1-.4-1.1-1.1.2-1.6L20.4 3c.9-.3 1.7.2 1.4 1.2z"/>
+  </svg>
+  <span>Написать в Telegram</span>
+</a>
+
+<style>
+.telegram-float {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9999;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  border-radius: 50px;
+  background: #229ED9;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, .2);
+  transition: transform .2s, background .2s;
+}
+
+.telegram-float:hover {
+  background: #168ac4;
+  transform: translateY(-3px);
+}
+
+.telegram-float svg {
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .telegram-float {
+    right: 14px;
+    bottom: 14px;
+    padding: 13px;
+  }
+
+  .telegram-float span {
+    font-size: 14px;
+  }
+}
+</style> вашего Cloudflare Worker, который пересылает заявки в Telegram.
 const WORKER_URL = 'Stroykompas86_bot';
 const WA = '79966889979';
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
