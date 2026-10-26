@@ -1,372 +1,68 @@
-```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Строй Компас — ремонт и отделка в Ханты-Мансийске</title>
-<link rel="icon" href="favicon.ico" sizes="any">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Строй Компас — ремонт и отделка под ключ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#0A0C10;
-  --card:#151A22;
-  --card-hover:#1C232E;
-  --ink:#F8FAFC;
-  --muted:#94A3B8;
-  --line:#2A3441;
-  --accent:#FF6B2C;
-  --accent-hover:#E85A1A;
-  --wa:#25D366;
-  --tg:#2AABEE;
-  --shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
-}
-*,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;font-family:'Montserrat', sans-serif;background:var(--bg);color:var(--ink);
-  font-size:16px;line-height:1.6;padding-bottom:80px;-webkit-font-smoothing: antialiased;
-}
-h1,h2,h3,h4{margin:0;line-height:1.2;font-weight:700}
-h1{font-size:36px;letter-spacing:-0.02em}
-h2{font-size:28px;margin-bottom:30px;text-align:center}
-p{margin:0}
-a{color:inherit;text-decoration:none;transition:0.3s}
-img{max-width:100%;display:block}
-.wrap{max-width:1140px;margin:0 auto;padding:0 20px}
-
-/* Buttons */
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;
-  background:var(--accent);color:#fff;font-weight:600;
-  border-radius:12px;padding:16px 32px;border:none;font-size:16px;
-  text-align:center;cursor:pointer;transition:all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(255, 107, 44, 0.3);
-}
-.btn:hover{background:var(--accent-hover);transform:translateY(-2px);box-shadow: 0 6px 20px rgba(255, 107, 44, 0.4);}
-.btn-ghost{background:transparent;color:var(--ink);border:2px solid var(--line);box-shadow:none;}
-.btn-ghost:hover{background:var(--line);transform:translateY(-2px);box-shadow:none;}
-.btn-wa{background:var(--wa); box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);}
-.btn-wa:hover{background:#1EBE5B; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);}
-.btn-tg{background:var(--tg); box-shadow: 0 4px 15px rgba(42, 171, 238, 0.3);}
-.btn-tg:hover{background:#1E9CD7; box-shadow: 0 6px 20px rgba(42, 171, 238, 0.4);}
-
-/* Header */
-header{
-  background:rgba(10, 12, 16, 0.8);backdrop-filter:blur(10px);
-  border-bottom:1px solid var(--line);padding:15px 0;
-  position:fixed;top:0;left:0;right:0;z-index:1000;
-}
-header .wrap{display:flex;justify-content:space-between;align-items:center}
-.logo{font-weight:800;font-size:22px;letter-spacing:1px;display:flex;align-items:center;gap:10px;}
-.logo span{color:var(--accent)}
-
-/* Hero */
-.hero{
-  padding:160px 0 100px;text-align:center;position:relative;
-  background: linear-gradient(to bottom, rgba(10,12,16,0.7), var(--bg)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80') center/cover;
-}
-.hero h1{font-size:48px;margin-bottom:20px;}
-.hero h1 span{color:var(--accent);}
-.hero p{color:#CBD5E1;margin:0 auto 40px;font-size:20px;max-width:600px;}
-.hero .cta{display:flex;justify-content:center;gap:15px;flex-wrap:wrap;}
-
-/* Sections */
-.section{padding:80px 0;border-top:1px solid var(--line)}
-
-/* Services */
-.services{display:grid;grid-template-columns:1fr;gap:20px}
-.svc{
-  background:var(--card);border:1px solid var(--line);border-radius:16px;
-  padding:30px;transition:all 0.3s ease;cursor:pointer;position:relative;overflow:hidden;
-}
-.svc::before{
-  content:'';position:absolute;top:0;left:0;width:4px;height:0;
-  background:var(--accent);transition:0.3s;border-radius:4px 0 0 4px;
-}
-.svc:hover{background:var(--card-hover);transform:translateY(-5px);box-shadow:var(--shadow);border-color:#3A475A;}
-.svc:hover::before{height:100%;}
-.svc h3{font-size:22px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;}
-.svc p{color:var(--muted);font-size:15px;margin-bottom:20px;}
-.svc .price{color:var(--accent);font-size:18px;font-weight:700;display:block;}
-.svc .arrow { font-size: 20px; color: var(--accent); opacity: 0; transition: 0.3s; transform: translateX(-10px); }
-.svc:hover .arrow { opacity: 1; transform: translateX(0); }
-
-/* Gallery */
-.gal{display:grid;grid-template-columns:1fr 1fr;gap:15px}
-.gal img{
-  border-radius:16px;height:250px;object-fit:cover;width:100%;
-  transition:transform 0.4s ease, filter 0.4s ease;filter:brightness(0.8);cursor:pointer;
-}
-.gal img:hover{transform:scale(1.02);filter:brightness(1);z-index:2;position:relative;}
-
-/* Calculator */
-.calc{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:40px;box-shadow:var(--shadow);}
-.calc label{display:block;margin-bottom:10px;color:var(--muted);font-size:14px;font-weight:500;}
-.calc select,.calc input{
-  width:100%;padding:16px;border-radius:12px;border:1px solid var(--line);
-  background:var(--bg);color:var(--ink);font-size:16px;margin-bottom:25px;
-  font-family:'Montserrat', sans-serif;outline:none;transition:0.3s;
-}
-.calc select:focus,.calc input:focus{border-color:var(--accent);}
-.calc-res{background:rgba(255,107,44,0.05);padding:30px;border-radius:16px;text-align:center;border:1px dashed rgba(255,107,44,0.3);}
-.sum{font-size:36px;font-weight:800;color:var(--accent);margin-bottom:25px;}
-
-/* Form */
-form{background:var(--card);padding:40px;border-radius:24px;border:1px solid var(--line);}
-form input{
-  width:100%;padding:16px;margin-bottom:15px;border-radius:12px;
-  border:1px solid var(--line);background:var(--bg);color:var(--ink);
-  font-size:16px;font-family:'Montserrat', sans-serif;outline:none;transition:0.3s;
-}
-form input:focus{border-color:var(--accent);}
-#fmsg{text-align:center;margin-top:20px;color:var(--accent);font-size:15px;font-weight:600;}
-
-footer{text-align:center;padding:40px 0 100px;color:var(--muted);font-size:14px;border-top:1px solid var(--line);}
-
-/* Mobile Bar */
-.mobile-bar{
-  position:fixed;bottom:0;left:0;right:0;background:rgba(21, 26, 34, 0.95);
-  backdrop-filter:blur(10px);border-top:1px solid var(--line);
-  padding:12px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;z-index:1000;
-}
-.mobile-bar .btn{padding:12px 5px;font-size:13px;border-radius:10px;box-shadow:none;}
-
-/* Chat Widget */
-.chat-widget{position:fixed;bottom:90px;right:20px;z-index:2000;display:flex;flex-direction:column;align-items:flex-end;}
-.chat-btn{
-  width:65px;height:65px;border-radius:50%;background:var(--accent);color:#fff;
-  display:flex;justify-content:center;align-items:center;cursor:pointer;
-  box-shadow:0 4px 20px rgba(255,107,44,0.5);transition:0.3s;
-}
-.chat-btn:hover{transform:scale(1.05);}
-.chat-btn svg{width:30px;height:30px;fill:currentColor;}
-.chat-window{
-  display:none;width:350px;height:500px;background:var(--card);
-  border-radius:20px;box-shadow:0 10px 40px rgba(0,0,0,0.6);border:1px solid var(--line);
-  margin-bottom:15px;overflow:hidden;flex-direction:column;animation:slideUp 0.3s ease;
-}
-@keyframes slideUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
-.chat-header{background:var(--accent);padding:20px;color:#fff;display:flex;align-items:center;gap:15px;}
-.chat-header h4{margin:0;font-size:16px;}
-.chat-header p{margin:0;font-size:12px;opacity:0.9;display:flex;align-items:center;gap:5px;}
-.chat-header p::before{content:'';width:8px;height:8px;background:#25D366;border-radius:50%;display:inline-block;}
-.chat-body{flex:1;padding:20px;overflow-y:auto;display:flex;flex-direction:column;gap:15px;background:var(--bg);}
-.msg{max-width:80%;padding:12px 16px;border-radius:16px;font-size:14px;line-height:1.4;}
-.msg.bot{background:var(--card);color:var(--ink);align-self:flex-start;border-bottom-left-radius:4px;border:1px solid var(--line);}
-.msg.user{background:var(--accent);color:#fff;align-self:flex-end;border-bottom-right-radius:4px;}
-.chat-input-area{padding:15px;background:var(--card);border-top:1px solid var(--line);display:flex;gap:10px;}
-.chat-input-area input{
-  flex:1;padding:12px 15px;border-radius:20px;border:1px solid var(--line);
-  background:var(--bg);color:var(--ink);font-family:'Montserrat';outline:none;
-}
-.chat-input-area button{
-  background:var(--accent);border:none;border-radius:50%;width:44px;height:44px;
-  color:#fff;cursor:pointer;display:flex;justify-content:center;align-items:center;
-}
-.chat-input-area button svg{width:20px;height:20px;fill:currentColor;margin-left:-2px;}
-
-/* =========================================
-   МОДАЛЬНОЕ ОКНО (ПОДРОБНОСТИ УСЛУГИ)
-   ========================================= */
-.modal-overlay {
-  display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 3000;
-  justify-content: center; align-items: center; padding: 20px;
-  opacity: 0; transition: opacity 0.3s ease;
-}
-.modal-overlay.active { display: flex; opacity: 1; }
-.modal-content {
-  background: var(--card); border: 1px solid var(--line); border-radius: 24px;
-  max-width: 700px; width: 100%; max-height: 90vh; overflow-y: auto;
-  padding: 40px; position: relative; transform: translateY(30px);
-  transition: transform 0.3s ease; box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-}
-.modal-overlay.active .modal-content { transform: translateY(0); }
-.modal-close {
-  position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.1);
-  border: none; color: var(--ink); width: 40px; height: 40px; border-radius: 50%;
-  font-size: 24px; cursor: pointer; display: flex; justify-content: center; align-items: center;
-  transition: 0.3s; z-index: 10;
-}
-.modal-close:hover { background: var(--accent); color: #fff; transform: rotate(90deg); }
-.modal-img {
-  width: 100%; height: 300px; object-fit: cover; border-radius: 16px; margin-bottom: 25px;
-}
-.modal-title { font-size: 28px; margin-bottom: 15px; color: var(--accent); }
-.modal-desc { color: var(--muted); font-size: 16px; margin-bottom: 25px; line-height: 1.7; }
-.modal-list { margin-bottom: 30px; padding-left: 20px; color: var(--ink); }
-.modal-list li { margin-bottom: 8px; }
-.modal-footer { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; border-top: 1px solid var(--line); padding-top: 20px; }
-.modal-price { font-size: 28px; font-weight: 800; color: var(--ink); }
-
-@media(min-width:768px){
-  .hero h1{font-size:64px;}
-  .services{grid-template-columns:1fr 1fr;}
-  .gal{grid-template-columns:repeat(4,1fr);}
-  .calc-flex{display:grid;grid-template-columns:1fr 1fr;gap:30px;}
-  .mobile-bar{display:none;}
-  footer{padding-bottom:40px;}
-  .chat-widget{bottom:30px;}
-}
-@media(max-width:400px){
-  .chat-window{width:calc(100vw - 40px);height:400px;}
-  .modal-content{padding: 25px;}
-  .modal-img{height: 200px;}
-}
+:root{--bg:#111416;--panel:#191d1f;--cream:#f3eee7;--ink:#f7f3ed;--dark:#17191a;--muted:#b6b2aa;--gold:#bd9b63;--gold2:#d2b47e;--line:rgba(210,180,126,.24);--green:#25D366;--blue:#2AABEE}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:85px}body{margin:0;background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}img{display:block;max-width:100%}button,input,select{font:inherit}.wrap{max-width:1240px;margin:auto;padding:0 34px}
+header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(17,20,22,.83);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08)}header .wrap{height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}.logo{font-size:19px;letter-spacing:3px;font-weight:600;display:flex;align-items:center;gap:12px}.logo-mark{font-family:'Playfair Display',serif;font-size:34px;color:var(--gold);line-height:1}.logo small{display:block;font-size:7px;letter-spacing:1.3px;color:#b6b2aa;margin-top:-2px}.nav{display:flex;gap:26px;align-items:center;font-size:10px;text-transform:uppercase;letter-spacing:.8px}.nav a{transition:color .2s}.nav a:hover{color:var(--gold2)}.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:13px 21px;border:1px solid var(--gold);background:var(--gold);color:#181818;font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;cursor:pointer;transition:.25s}.btn:hover{background:var(--gold2);transform:translateY(-2px)}.btn-outline{background:transparent;color:var(--ink);border-color:var(--line)}.btn-outline:hover{background:var(--gold);color:#171717}.eyebrow{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600}.serif{font-family:'Playfair Display',serif;font-weight:400;letter-spacing:-.7px}
+.hero{min-height:650px;padding:150px 0 90px;position:relative;display:flex;align-items:center;background:linear-gradient(90deg,rgba(12,15,17,.92) 0%,rgba(12,15,17,.72) 40%,rgba(12,15,17,.08) 100%),linear-gradient(0deg,rgba(12,15,17,.72),transparent 45%),url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2000&q=90') center/cover}.hero-content{max-width:570px}.hero h1{font-size:clamp(42px,5.5vw,72px);line-height:1.04;margin:15px 0 22px}.hero h1 em{font-style:normal;color:var(--gold2)}.hero p{color:#d0d0ca;max-width:390px;font-size:14px;margin-bottom:30px}.hero-actions{display:flex;gap:12px;flex-wrap:wrap}.stats{position:absolute;bottom:-34px;left:50%;transform:translateX(-50%);width:min(1120px,calc(100% - 68px));display:grid;grid-template-columns:repeat(4,1fr);background:rgba(18,21,22,.96);border:1px solid rgba(210,180,126,.25);border-radius:18px;padding:23px 18px;box-shadow:0 20px 50px #0004}.stat{display:flex;justify-content:center;align-items:center;gap:13px;border-right:1px solid var(--line)}.stat:last-child{border:0}.stat strong{display:block;color:var(--gold2);font:28px 'Playfair Display',serif;line-height:1.2}.stat span{display:block;font-size:9px;color:#c2beb6}
+section{padding:90px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:30px}.section-head h2{font-size:clamp(32px,4vw,46px);line-height:1.08;margin:9px 0 0}.section-head p{max-width:340px;color:var(--muted);font-size:12px}.projects{background:var(--cream);color:#1b1b19;padding-top:100px}.project-grid{display:grid;grid-template-columns:1.15fr 1fr .8fr;grid-template-rows:190px 190px;gap:12px}.project{position:relative;overflow:hidden;min-height:180px;background:#282828;color:#fff;border-radius:4px}.project:first-child{grid-row:span 2}.project img{width:100%;height:100%;object-fit:cover;transition:transform .6s;filter:brightness(.78)}.project:hover img{transform:scale(1.05);filter:brightness(.62)}.project-info{position:absolute;inset:auto 0 0;padding:18px;background:linear-gradient(transparent,rgba(0,0,0,.8))}.project-info h3{font:20px 'Playfair Display',serif;margin:0 0 3px}.project-info p{font-size:10px;color:#ddd;margin:0}.project-arrow{position:absolute;right:16px;bottom:17px;border:1px solid #ffffff77;border-radius:50%;width:30px;height:30px;display:grid;place-items:center}
+.services-section{background:#111416}.service-layout{display:grid;grid-template-columns:1fr 3.3fr;gap:32px;align-items:start}.service-intro h2{font:40px/1.1 'Playfair Display',serif;margin:10px 0 15px}.service-intro p{color:var(--muted);font-size:12px;margin-bottom:25px}.services{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.svc{background:linear-gradient(145deg,#1b2022,#151819);border:1px solid rgba(255,255,255,.09);padding:24px 18px;min-height:185px;cursor:pointer;transition:.25s}.svc:hover{border-color:var(--gold);transform:translateY(-4px);background:#202425}.svc h3{font:18px 'Playfair Display',serif;margin:0 0 12px}.svc .service-icon{font-size:24px;color:var(--gold);display:block;margin-bottom:20px}.svc p{font-size:11px;color:var(--muted);margin-bottom:14px}.svc .price{font-size:11px;color:var(--gold2);font-weight:700}.svc .arrow{display:none}
+.process{background:var(--cream);color:#20201d;position:relative}.process .section-head{margin-bottom:42px}.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;position:relative}.steps:before{content:'';height:1px;background:#d7c9b4;position:absolute;left:7%;right:7%;top:20px}.step{text-align:center;position:relative}.step-num{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:#b99459;color:white;font-size:12px;margin:0 auto 17px;box-shadow:0 0 0 5px var(--cream);position:relative}.step h3{font:19px 'Playfair Display',serif;margin-bottom:7px}.step p{font-size:11px;color:#6c6a64;max-width:160px;margin:auto}
+.insights{background:#111416}.article-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.article{background:#1a1e20;border:1px solid rgba(255,255,255,.08);overflow:hidden}.article img{height:180px;width:100%;object-fit:cover;filter:brightness(.8);transition:.3s}.article:hover img{filter:brightness(1)}.article-body{padding:17px}.article time{font-size:8px;letter-spacing:1px;color:var(--gold)}.article h3{font:20px/1.2 'Playfair Display',serif;margin:8px 0 14px}.article a{font-size:9px;text-transform:uppercase;letter-spacing:.8px;color:var(--gold2)}
+footer{border-top:1px solid var(--line);background:#0e1112;padding:48px 0 20px}.footer-grid{display:grid;grid-template-columns:1.2fr 1fr 1.2fr;gap:34px}.footer-title{font:30px/1.15 'Playfair Display',serif;margin:8px 0 18px}.contact-list{font-size:12px;color:#d1cec7;line-height:2.1}.footer-brand p{font-size:11px;color:var(--muted);max-width:280px;margin-top:15px}.copyright{border-top:1px solid rgba(255,255,255,.08);margin-top:36px;padding-top:15px;display:flex;justify-content:space-between;color:#898a86;font-size:9px}
+#calc,#zayavka{background:#15191b}#calc h2,#zayavka h2{font:38px 'Playfair Display',serif;text-align:left;margin-bottom:25px}.calc{background:#1c2123;border:1px solid var(--line);padding:28px;border-radius:5px}.calc label{display:block;font-size:11px;color:var(--muted);margin-bottom:8px}.calc select,.calc input,form input{width:100%;padding:14px;background:#101314;color:var(--ink);border:1px solid #353b3c;margin-bottom:18px;outline:none}.calc select:focus,.calc input:focus,form input:focus{border-color:var(--gold)}.calc-flex{display:grid;grid-template-columns:1fr 1fr;gap:20px}.calc-res{padding:22px;border:1px dashed var(--line);text-align:center}.sum{font:38px 'Playfair Display',serif;color:var(--gold2);margin-bottom:18px}form{background:#1c2123;padding:28px;border:1px solid var(--line)}#fmsg{margin-top:12px;font-size:12px;color:var(--gold2)}.mobile-bar{display:none}
+.chat-widget{position:fixed;right:22px;bottom:22px;z-index:2000;display:flex;flex-direction:column;align-items:flex-end}.chat-btn{width:55px;height:55px;border-radius:50%;background:var(--gold);color:#111;display:grid;place-items:center;cursor:pointer;box-shadow:0 5px 25px #0007}.chat-btn svg{width:25px;height:25px;fill:currentColor}.chat-window{display:none;width:330px;height:450px;background:#171c1e;border:1px solid var(--line);margin-bottom:12px;flex-direction:column;box-shadow:0 15px 40px #0009}.chat-header{background:#b99459;padding:15px;color:#161616}.chat-header h4{font-size:14px}.chat-header p{font-size:10px}.chat-body{flex:1;padding:15px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;background:#101314}.msg{max-width:85%;padding:10px 12px;font-size:12px}.msg.bot{align-self:flex-start;background:#242a2c}.msg.user{align-self:flex-end;background:#b99459;color:#151515}.chat-input-area{display:flex;padding:10px;gap:8px}.chat-input-area input{flex:1;min-width:0;background:#101314;border:1px solid #353b3c;color:white;padding:10px}.chat-input-area button{width:40px;background:var(--gold);border:0;cursor:pointer}.chat-input-area button svg{width:17px;fill:#111}
+.modal-overlay{display:none;position:fixed;inset:0;z-index:3000;background:#000d;backdrop-filter:blur(6px);justify-content:center;align-items:center;padding:20px}.modal-overlay.active{display:flex}.modal-content{background:#191e20;border:1px solid var(--line);max-width:680px;width:100%;max-height:90vh;overflow:auto;padding:28px;position:relative}.modal-close{position:absolute;right:15px;top:15px;background:#111;color:white;border:1px solid var(--line);width:36px;height:36px;font-size:23px;cursor:pointer}.modal-img{width:100%;height:240px;object-fit:cover;margin-bottom:20px}.modal-title{font:30px 'Playfair Display',serif;color:var(--gold2);margin-bottom:12px}.modal-desc{font-size:13px;color:var(--muted);margin-bottom:16px}.modal-list{font-size:12px;padding-left:20px;margin-bottom:22px}.modal-list li{margin-bottom:6px}.modal-footer{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:18px}.modal-price{font-size:20px;color:var(--gold2);font-weight:700}
+@media(max-width:900px){.nav{display:none}.hero{min-height:620px;background-position:58% center}.service-layout{grid-template-columns:1fr}.services{grid-template-columns:repeat(2,1fr)}.project-grid{grid-template-columns:1fr 1fr;grid-template-rows:220px 180px}.project:first-child{grid-row:span 2}.project:nth-child(4){display:none}.stats{width:calc(100% - 36px)}.stat{gap:7px}.stat strong{font-size:22px}.footer-grid{grid-template-columns:1fr 1fr}.footer-brand{grid-column:span 2}}
+@media(max-width:600px){.wrap{padding:0 20px}header .wrap{height:68px}.logo{font-size:16px}.hero{padding:125px 0 130px;min-height:640px;background-position:62% center}.hero h1{font-size:43px}.hero p{font-size:13px}.hero-actions .btn{width:100%}.stats{bottom:-55px;grid-template-columns:1fr 1fr;padding:14px 8px;gap:12px}.stat{border-right:0;justify-content:flex-start;padding-left:10px}.stat strong{font-size:22px}.stat span{font-size:8px}.projects{padding-top:110px}.section-head{display:block}.section-head p{margin-top:14px}.project-grid{grid-template-columns:1fr 1fr;grid-template-rows:230px 155px}.project:first-child{grid-column:span 2;grid-row:auto}.project-info h3{font-size:17px}.project:nth-child(4){display:block}.services{grid-template-columns:1fr 1fr;gap:9px}.svc{padding:18px 13px;min-height:170px}.svc h3{font-size:16px}.steps{grid-template-columns:1fr;gap:20px}.steps:before{left:21px;right:auto;top:20px;bottom:20px;width:1px;height:auto}.step{text-align:left;display:grid;grid-template-columns:42px 1fr;column-gap:15px}.step-num{grid-row:span 2;margin:0}.step h3{margin:0 0 4px}.step p{margin:0;max-width:none}.article-grid{grid-template-columns:1fr}.article img{height:200px}.footer-grid{grid-template-columns:1fr}.footer-brand{grid-column:auto}.copyright{gap:10px;flex-direction:column}.calc-flex{grid-template-columns:1fr;gap:0}.calc{padding:18px}.sum{font-size:32px}.chat-widget{right:14px;bottom:82px}.chat-window{width:calc(100vw - 28px);height:420px}.mobile-bar{position:fixed;bottom:0;left:0;right:0;z-index:1500;display:grid;grid-template-columns:repeat(3,1fr);gap:7px;padding:8px;background:#15191bf2;border-top:1px solid var(--line)}.mobile-bar .btn{font-size:9px;padding:11px 4px}.chat-widget{bottom:75px}footer{padding-bottom:95px}}
 </style>
 </head>
 <body>
-
-<header>
-  <div class="wrap">
-    <div class="logo">СК <span>Строй Компас</span></div>
-  </div>
-</header>
-
-<div class="hero wrap">
-  <h1>Ремонт квартир <br><span>под ключ</span> в ХМАО</h1>
-  <p>Фиксированная смета, дизайн-проект в подарок и гарантия 2 года на все работы.</p>
-  <div class="cta">
-    <a href="#calc" class="btn">Рассчитать стоимость</a>
-    <a href="tel:+79966889979" class="btn btn-ghost">Вызвать замерщика</a>
-  </div>
-</div>
-
-<div class="section wrap" id="services">
-  <h2>Услуги</h2>
-  <div class="services">
-    <div class="svc" data-service="Покраска">
-      <h3>Покраска <span>🎨</span></h3>
-      <p>Грунтовка, шпаклёвка, покраска</p>
-      <span class="price">от 380 ₽/м² <span class="arrow">→</span></span>
-    </div>
-    <div class="svc" data-service="Плитка">
-      <h3>Плитка <span>🧱</span></h3>
-      <p>Санузлы, мозаика, гидроизоляция</p>
-      <span class="price">от 800 ₽/м² <span class="arrow">→</span></span>
-    </div>
-    <div class="svc" data-service="Электрика">
-      <h3>Электрика <span>⚡</span></h3>
-      <p>Щиты, розетки, проводка</p>
-      <span class="price">от 450 ₽/точка <span class="arrow">→</span></span>
-    </div>
-    <div class="svc" data-service="Сантехника">
-      <h3>Сантехника <span>🔧</span></h3>
-      <p>Трубы, счётчики, установка</p>
-      <span class="price">от 2000 ₽/точка <span class="arrow">→</span></span>
-    </div>
-  </div>
-</div>
-
-<div class="section wrap">
-  <h2>Наши работы</h2>
-  <div class="gal">
-    <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=80" alt="Ремонт 1">
-    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80" alt="Ремонт 2">
-    <img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=600&q=80" alt="Ремонт 3">
-    <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80" alt="Ремонт 4">
-  </div>
-</div>
-
-<div id="calc" class="section wrap">
-  <h2>Калькулятор</h2>
-  <div class="calc">
-    <div class="calc-flex">
-      <div>
-        <label>Вид работ</label>
-        <select id="type">
-          <option value="Ремонт под ключ">Ремонт под ключ (от 5500 ₽/м²)</option>
-          <option value="Покраска">Покраска (от 450 ₽/м²)</option>
-          <option value="Плитка">Плитка (от 900 ₽/м²)</option>
-          <option value="Электрика">Электрика (от 600 ₽/точка)</option>
-          <option value="Сантехника">Сантехника (от 2000 ₽/точка)</option>
-        </select>
-      </div>
-      <div>
-        <label id="lbl">Площадь, м²</label>
-        <input type="number" id="area" value="50" min="1">
-      </div>
-    </div>
-    <div class="calc-res">
-      <div class="sum" id="sum">275 000 ₽</div>
-      <a href="#" id="order-wa" class="btn btn-wa" target="_blank" style="width:100%;margin-bottom:15px;">Отправить в WhatsApp</a>
-      <button id="order" class="btn btn-ghost" style="width:100%">Жду звонка</button>
-    </div>
-  </div>
-</div>
-
-<div id="zayavka" class="section wrap">
-  <h2>Оставить заявку</h2>
-  <form id="lead">
-    <input type="hidden" id="req-details" value="">
-    <input type="text" id="name" placeholder="Ваше имя" required>
-    <input type="tel" id="phone" placeholder="Телефон" required>
-    <button type="submit" class="btn" style="width:100%">Отправить заявку</button>
-    <div id="fmsg"></div>
-  </form>
-</div>
-
-<div class="section wrap">
-  <h2>Контакты</h2>
-  <p>Город: Ханты-Мансийск</p>
-  <p>Режим: 9:00–20:00</p>
-  <p style="margin-top:15px">
-    <a href="tel:+79966889979" style="color:var(--accent);font-weight:bold;font-size:24px">+7 996 688-99-79</a>
-  </p>
-</div>
-
-<footer>© Строй Компас</footer>
-
-<!-- Нижняя панель -->
-<div class="mobile-bar">
-  <a href="tel:+79966889979" class="btn btn-ghost">Звонок</a>
-  <a href="https://wa.me/79966889979" id="wa-mobile" target="_blank" class="btn btn-wa">WhatsApp</a>
-  <a href="https://t.me/Stroykompas86_bot?start=site" target="_blank" class="btn btn-tg">Telegram</a>
-</div>
-
-<!-- Виджет чата с онлайн-инструктором -->
-<div class="chat-widget">
-  <div class="chat-window" id="chatWindow">
-    <div class="chat-header">
-      <div style="background:#fff;border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:24px;">👷</div>
-      <div>
-        <h4>Онлайн-прораб</h4>
-        <p>Онлайн</p>
-      </div>
-    </div>
-    <div class="chat-body" id="chatBody">
-      <div class="msg bot">Здравствуйте! Я ваш онлайн-консультант. Задайте любой вопрос по ремонту, срокам или материалам!</div>
-    </div>
-    <div class="chat-input-area">
-      <input type="text" id="chatInput" placeholder="Напишите вопрос..." onkeypress="handleChatEnter(event)">
-      <button onclick="sendChatMessage()">
-        <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-      </button>
-    </div>
-  </div>
-  <div class="chat-btn" id="chatToggle" onclick="toggleChat()">
-    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
-  </div>
-</div>
-
-<!-- =========================================
-     МОДАЛЬНОЕ ОКНО (ПОДРОБНОСТИ УСЛУГИ)
-     ========================================= -->
-<div id="serviceModal" class="modal-overlay">
-  <div class="modal-content">
-    <button class="modal-close" onclick="closeModal()">&times;</button>
-    <img id="modalImg" src="" alt="Услуга" class="modal-img">
-    <h2 id="modalTitle" class="modal-title"></h2>
-    <p id="modalDesc" class="modal-desc"></p>
-    <ul id="modalList" class="modal-list"></ul>
-    <div class="modal-footer">
-      <div id="modalPrice" class="modal-price"></div>
-      <button class="btn" onclick="calcFromModal()">Рассчитать стоимость</button>
-    </div>
-  </div>
-</div>
-
+<header><div class="wrap">
+  <a class="logo" href="#home"><span class="logo-mark">СК</span><span>СТРОЙ КОМПАС<small>РЕМОНТ И ОТДЕЛКА</small></span></a>
+  <nav class="nav"><a href="#home">Главная</a><a href="#projects">Проекты</a><a href="#services">Услуги</a><a href="#process">Этапы</a><a href="#insights">Советы</a><a href="#contacts">Контакты</a></nav>
+  <a href="#zayavka" class="btn btn-outline">Связаться ↗</a>
+</div></header>
+<main>
+<section class="hero" id="home"><div class="wrap"><div class="hero-content">
+  <div class="eyebrow">РЕМОНТ, КОТОРЫЙ ВДОХНОВЛЯЕТ</div>
+  <h1 class="serif">Создаём<br><em>пространства</em><br>для вашей жизни.</h1>
+  <p>От первого замера до финальных деталей — продумываем каждый этап, чтобы ваш дом был красивым, удобным и служил долгие годы.</p>
+  <div class="hero-actions"><a href="#projects" class="btn">Смотреть проекты ↗</a><a href="#calc" class="btn btn-outline">Рассчитать стоимость</a></div>
+</div></div>
+<div class="stats wrap"><div class="stat"><div><strong>100%</strong><span>Внимание к деталям</span></div></div><div class="stat"><div><strong>Под ключ</strong><span>Комплексный ремонт</span></div></div><div class="stat"><div><strong>Чётко</strong><span>Согласованная смета</span></div></div><div class="stat"><div><strong>2 года</strong><span>Гарантия на работы</span></div></div></div>
+</section>
+<section class="projects" id="projects"><div class="wrap"><div class="section-head"><div><div class="eyebrow">ИЗБРАННЫЕ ПРОЕКТЫ</div><h2 class="serif">Пространства,<br>в которых хочется жить</h2></div><p>Продуманные решения, качественные материалы и внимание к каждой детали — от идеи до готового интерьера.</p></div>
+<div class="project-grid">
+<div class="project"><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=85" alt="Современный интерьер"><div class="project-info"><h3>Современная квартира</h3><p>Ханты-Мансийск · Ремонт под ключ</p></div><span class="project-arrow">↗</span></div>
+<div class="project"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=85" alt="Современная гостиная"><div class="project-info"><h3>Семейная резиденция</h3><p>Тёплый минимализм</p></div><span class="project-arrow">↗</span></div>
+<div class="project"><img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=800&q=85" alt="Интерьер дома"><div class="project-info"><h3>Дом за городом</h3><p>Современная классика</p></div><span class="project-arrow">↗</span></div>
+<div class="project"><img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=85" alt="Детали интерьера"><div class="project-info"><h3>Свет и фактура</h3><p>Дизайн интерьера</p></div><span class="project-arrow">↗</span></div>
+</div></div></section>
+<section class="services-section" id="services"><div class="wrap service-layout"><div class="service-intro"><div class="eyebrow">НАШИ УСЛУГИ</div><h2>Решения<br>под ключ</h2><p>Комплексный подход к ремонту: от отдельных работ до полной реализации проекта.</p><a href="#calc" class="btn btn-outline">Все услуги ↗</a></div>
+<div class="services">
+<div class="svc" data-service="Покраска"><span class="service-icon">✳</span><h3>Покраска</h3><p>Ровные стены и безупречная отделка.</p><span class="price">от 380 ₽/м²</span></div>
+<div class="svc" data-service="Плитка"><span class="service-icon">◇</span><h3>Плитка</h3><p>Санузлы, кухня, керамогранит.</p><span class="price">от 800 ₽/м²</span></div>
+<div class="svc" data-service="Электрика"><span class="service-icon">⌁</span><h3>Электрика</h3><p>Безопасная проводка и монтаж.</p><span class="price">от 450 ₽/точка</span></div>
+<div class="svc" data-service="Сантехника"><span class="service-icon">⌂</span><h3>Сантехника</h3><p>Монтаж оборудования и труб.</p><span class="price">от 2 000 ₽/точка</span></div>
+</div></div></section>
+<section class="process" id="process"><div class="wrap"><div class="section-head"><div><div class="eyebrow">НАШ ПРОЦЕСС</div><h2 class="serif">Путь от идеи<br>до результата</h2></div><p>Понятные этапы, прозрачная смета и связь с командой на протяжении всего ремонта.</p></div>
+<div class="steps"><div class="step"><div class="step-num">01</div><h3>Знакомство</h3><p>Обсуждаем задачи, пожелания и бюджет.</p></div><div class="step"><div class="step-num">02</div><h3>Планирование</h3><p>Делаем замер и согласуем смету.</p></div><div class="step"><div class="step-num">03</div><h3>Работы</h3><p>Выполняем ремонт по плану.</p></div><div class="step"><div class="step-num">04</div><h3>Проверка</h3><p>Контролируем качество каждого этапа.</p></div><div class="step"><div class="step-num">05</div><h3>Передача</h3><p>Принимаете готовый результат с гарантией.</p></div></div></div></section>
+<section class="insights" id="insights"><div class="wrap"><div class="section-head"><div><div class="eyebrow">ПОЛЕЗНЫЕ ИДЕИ</div><h2 class="serif">Вдохновение.<br>Материалы. Советы.</h2></div><p>Полезные заметки, которые помогут увереннее принимать решения перед ремонтом.</p></div>
+<div class="article-grid"><article class="article"><img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=700&q=80" alt="Светлый интерьер"><div class="article-body"><time>ПЛАНИРОВАНИЕ</time><h3>Как подготовиться к ремонту без лишнего стресса</h3><a href="#calc">Читать советы ↗</a></div></article><article class="article"><img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=700&q=80" alt="Материалы отделки"><div class="article-body"><time>МАТЕРИАЛЫ</time><h3>На чём стоит экономить, а на чём — нет</h3><a href="#calc">Читать советы ↗</a></div></article><article class="article"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=700&q=80" alt="Интерьер гостиной"><div class="article-body"><time>ДИЗАЙН</time><h3>Как сделать интерьер удобным на каждый день</h3><a href="#services">Читать советы ↗</a></div></article></div></div></section>
+<section id="calc"><div class="wrap"><div class="eyebrow">ПРЕДВАРИТЕЛЬНЫЙ РАСЧЁТ</div><h2>Рассчитайте стоимость</h2><div class="calc"><div class="calc-flex"><div><label>Вид работ</label><select id="type"><option value="Ремонт под ключ">Ремонт под ключ (от 5500 ₽/м²)</option><option value="Покраска">Покраска (от 450 ₽/м²)</option><option value="Плитка">Плитка (от 900 ₽/м²)</option><option value="Электрика">Электрика (от 600 ₽/точка)</option><option value="Сантехника">Сантехника (от 2000 ₽/точка)</option></select></div><div><label id="lbl">Площадь, м²</label><input type="number" id="area" value="50" min="1"></div></div><div class="calc-res"><div class="sum" id="sum">275 000 ₽</div><a href="#" id="order-wa" class="btn" target="_blank" style="width:100%;margin-bottom:12px">Отправить расчёт в WhatsApp ↗</a><button id="order" class="btn btn-outline" style="width:100%">Заказать звонок</button></div></div></div></section>
+<section id="zayavka"><div class="wrap"><div class="eyebrow">ОБСУДИМ ВАШ ПРОЕКТ</div><h2>Давайте начнём</h2><form id="lead"><input type="hidden" id="req-details" value=""><input type="text" id="name" placeholder="Ваше имя" required><input type="tel" id="phone" placeholder="Телефон" required><button type="submit" class="btn" style="width:100%">Отправить заявку ↗</button><div id="fmsg"></div></form></div></section>
+</main>
+<footer id="contacts"><div class="wrap"><div class="footer-grid"><div><div class="eyebrow">ВАШ ПРОЕКТ НАЧИНАЕТСЯ ЗДЕСЬ</div><div class="footer-title">Давайте создадим<br>что-то особенное.</div><a href="#zayavka" class="btn">Начать проект ↗</a></div><div class="contact-list"><strong style="color:var(--gold2)">КОНТАКТЫ</strong><br>Ханты-Мансийск<br>Ежедневно, 9:00–20:00<br><a href="tel:+79966889979">+7 996 688-99-79</a><br><a href="https://wa.me/79966889979">WhatsApp ↗</a><br><a href="https://t.me/Stroykompas86_bot?start=site">Telegram ↗</a></div><div class="footer-brand"><div class="logo"><span class="logo-mark">СК</span><span>СТРОЙ КОМПАС<small>РЕМОНТ И ОТДЕЛКА</small></span></div><p>Помогаем создавать продуманные пространства, в которых удобно жить, отдыхать и работать. Качество, внимание и надёжность в каждой детали.</p></div></div><div class="copyright"><span>© 2026 Строй Компас. Все права защищены.</span><span>Ремонт и отделка под ключ · ХМАО</span></div></div></footer>
+<div class="mobile-bar"><a href="tel:+79966889979" class="btn btn-outline">Позвонить</a><a href="https://wa.me/79966889979" id="wa-mobile" target="_blank" class="btn">WhatsApp</a><a href="https://t.me/Stroykompas86_bot?start=site" target="_blank" class="btn btn-outline">Telegram</a></div>
+<div class="chat-widget"><div class="chat-window" id="chatWindow"><div class="chat-header"><h4>Онлайн-прораб</h4><p>На связи — задайте вопрос</p></div><div class="chat-body" id="chatBody"><div class="msg bot">Здравствуйте! Я ваш онлайн-консультант. Задайте вопрос по ремонту, срокам или материалам.</div></div><div class="chat-input-area"><input type="text" id="chatInput" placeholder="Напишите вопрос..." onkeypress="handleChatEnter(event)"><button onclick="sendChatMessage()"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button></div></div><div class="chat-btn" id="chatToggle" onclick="toggleChat()"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg></div></div>
+<div id="serviceModal" class="modal-overlay"><div class="modal-content"><button class="modal-close" onclick="closeModal()">&times;</button><img id="modalImg" src="" alt="Услуга" class="modal-img"><h2 id="modalTitle" class="modal-title"></h2><p id="modalDesc" class="modal-desc"></p><ul id="modalList" class="modal-list"></ul><div class="modal-footer"><div id="modalPrice" class="modal-price"></div><button class="btn" onclick="calcFromModal()">Рассчитать стоимость</button></div></div></div>
 <script>
 // --- 1. ЛОГИКА КАЛЬКУЛЯТОРА ---
 try {
@@ -620,6 +316,4 @@ function calcFromModal() {
   }, 350);
 }
 </script>
-
-</body>
-</html>
+</body></html>
