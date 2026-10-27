@@ -1,6 +1,6 @@
 // Адрес вашего Cloudflare Worker, который пересылает заявки в Telegram.
 // Пока пусто — заявки открываются в WhatsApp.
-const WORKER_URL = '';
+const WORKER_URL = 'https://super-pine-e648.shamanvaliev07.workers.dev';
 const WA = '79966889979';
 const REVIEWS = []; // отзывы для показа: { n: 'Имя', r: 5, t: 'Текст отзыва', d: 'Октябрь 2026' }
 const esc = s => String(s).replace(/[&<>"']/g, c => '&#' + c.charCodeAt(0) + ';');
