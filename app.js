@@ -6,17 +6,19 @@ const REVIEWS = []; // отзывы для показа: { n: 'Имя', r: 5, t:
 const esc = s => String(s).replace(/[&<>"']/g, c => '&#' + c.charCodeAt(0) + ';');
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const fmt = n => Math.round(n).toLocaleString('ru-RU') + ' ₽';
-const SV = { painting: ['Малярные работы', 380, 'м²'], tiling: ['Укладка плитки', 800, 'м²'], electrical: ['Электрика', 450, 'точка'], plumbing: ['Сантехника', 2000, 'точка'] };
+const SV = { painting: ['Малярные работы', 420, 'м²'], tiling: ['Укладка плитки', 880, 'м²'], electrical: ['Электрика', 500, 'точка'], plumbing: ['Сантехника', 2200, 'точка'] };
 const say = (el, t, e) => { el.textContent = t; el.classList.toggle('e', !!e); };
 
 async function send(d) {
   if (!WORKER_URL) { open('https://wa.me/' + WA + '?text=' + encodeURIComponent(d.message), '_blank'); return 'wa'; }
-  const r = await fetch(WORKER_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d) });
+  const r = await fetch(WORKER_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=UTF-8' }, body: JSON.stringify(d) });
   if (!r.ok) throw Error(r.status);
   return 'tg';
 }
 
 async function go(btn, st, d) {
+  const bx = btn.closest('form,.card'), cb = bx && bx.querySelector('input[type=checkbox]');
+  if (cb && !cb.checked) return say(st, 'Отметьте согласие на обработку персональных данных.', 1);
   if (d.phone !== undefined && d.phone.replace(/\D/g, '').length < 10) return say(st, 'Укажите телефон: минимум 10 цифр.', 1);
   btn.disabled = true; say(st, 'Отправляем…');
   try {
@@ -39,7 +41,7 @@ function calc() {
     });
     $('#tot').textContent = fmt(t);
     const nm = $('#nm').value.trim(), cm = $('#cm').value.trim();
-    calc.msg = `Здравствуйте! Хочу рассчитать работы${nm ? ' (' + nm + ')' : ''}:\n${L.join('\n') || '—'}\nОриентировочно: ${fmt(t)}${cm ? '\nКомментарий: ' + cm : ''}`;
+    calc.msg = `Здравствуйте! Хочу рассчитать работы${nm ? ' (' + nm + ')' : ''}:\n${L.join('\n') || '—'}\nСтоимость: ${fmt(t)}${cm ? '\nКомментарий: ' + cm : ''}`;
     $('#wa').href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(calc.msg);
   };
   const add = (s = 'painting', q = 10) => {
@@ -78,4 +80,26 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!v.name.trim() || v.text.trim().length < 10) return say($('#rs'), 'Укажите имя и напишите отзыв (от 10 символов).', 1);
     go($('button', rf), $('#rs'), { name: v.name, message: `Новый отзыв (на модерацию)\nИмя: ${v.name}\nОценка: ${v.rate}/5\n${v.text}` });
   };
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const it = $('#intro'), bh = $('#bh'), bp = $('#bp'), hero = $('.hero'), src = $('svg', bh);
+  const cl = c => { const n = src.cloneNode(true); n.setAttribute('class', c); return n; };
+  if (hero) hero.prepend(cl('hh static'));
+  $$('.pic').forEach(x => x.prepend(cl('static')));
+  const bd = $$('.d', bh);
+  const prog = () => {
+    const m = document.documentElement.scrollHeight - innerHeight, p = m > 40 ? Math.min(1, Math.max(0, scrollY / m)) : 1;
+    bd.forEach((d, i) => { d.style.strokeDashoffset = 1 - Math.min(1, Math.max(0, p * bd.length - i)); });
+    bp.textContent = Math.round(p * 100) + '%'; bh.classList.toggle('lit', p > .97);
+  };
+  addEventListener('scroll', prog, { passive: true }); addEventListener('resize', prog); addEventListener('load', prog); prog();
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .1 });
+  $$('.card,.sh,.ph>.w,.split>*,.cta,details').forEach(e => { e.classList.add('r0'); io.observe(e); });
+  if (!it) return;
+  let seen = 0; try { seen = sessionStorage.getItem('i'); } catch (e) {}
+  if (seen || matchMedia('(prefers-reduced-motion:reduce)').matches) { it.remove(); return; }
+  try { sessionStorage.setItem('i', 1); } catch (e) {}
+  const end = () => { it.classList.add('off'); setTimeout(() => it.remove(), 900); };
+  $('#sk').onclick = end; setTimeout(end, 5200);
 });
