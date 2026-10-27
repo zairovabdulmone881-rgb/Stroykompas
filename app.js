@@ -1,62 +1,9 @@
-// 
-<!-- Telegram button: Строй Компас -->
-<a
-  class="telegram-float"
-  href="https://t.me/USERNAME_BOTA"
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label="Написать в Telegram"
->
-  <svg viewBox="0 0 24 24" width="27" height="27" fill="currentColor" aria-hidden="true">
-    <path d="M21.8 4.2 18.6 20c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.3-8.4c.4-.4-.1-.6-.6-.2L6 13.6l-4.9-1.5c-1.1-.4-1.1-1.1.2-1.6L20.4 3c.9-.3 1.7.2 1.4 1.2z"/>
-  </svg>
-  <span>Написать в Telegram</span>
-</a>
-
-<style>
-.telegram-float {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  z-index: 9999;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 14px 18px;
-  border-radius: 50px;
-  background: #229ED9;
-  color: #fff;
-  font-family: Arial, sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  text-decoration: none;
-  box-shadow: 0 5px 18px rgba(0, 0, 0, .2);
-  transition: transform .2s, background .2s;
-}
-
-.telegram-float:hover {
-  background: #168ac4;
-  transform: translateY(-3px);
-}
-
-.telegram-float svg {
-  flex-shrink: 0;
-}
-
-@media (max-width: 480px) {
-  .telegram-float {
-    right: 14px;
-    bottom: 14px;
-    padding: 13px;
-  }
-
-  .telegram-float span {
-    font-size: 14px;
-  }
-}
-</style> вашего Cloudflare Worker, который пересылает заявки в Telegram.
-const WORKER_URL = 'Stroykompas86_bot';
+// Адрес вашего Cloudflare Worker, который пересылает заявки в Telegram.
+// Пока пусто — заявки открываются в WhatsApp.
+const WORKER_URL = '';
 const WA = '79966889979';
+const REVIEWS = []; // отзывы для показа: { n: 'Имя', r: 5, t: 'Текст отзыва', d: 'Октябрь 2026' }
+const esc = s => String(s).replace(/[&<>"']/g, c => '&#' + c.charCodeAt(0) + ';');
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const fmt = n => Math.round(n).toLocaleString('ru-RU') + ' ₽';
 const SV = { painting: ['Малярные работы', 380, 'м²'], tiling: ['Укладка плитки', 800, 'м²'], electrical: ['Электрика', 450, 'точка'], plumbing: ['Сантехника', 2000, 'точка'] };
@@ -70,7 +17,7 @@ async function send(d) {
 }
 
 async function go(btn, st, d) {
-  if (d.phone.replace(/\D/g, '').length < 10) return say(st, 'Укажите телефон: минимум 10 цифр.', 1);
+  if (d.phone !== undefined && d.phone.replace(/\D/g, '').length < 10) return say(st, 'Укажите телефон: минимум 10 цифр.', 1);
   btn.disabled = true; say(st, 'Отправляем…');
   try {
     const r = await send(d);
@@ -121,5 +68,14 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     const v = Object.fromEntries(new FormData(f)); if (v.site) return;
     go($('button', f), $('#cs'), { name: v.name, phone: v.phone, message: `Заявка с сайта\nИмя: ${v.name || '—'}\nТелефон: ${v.phone}\n${v.text || ''}` });
+  };
+  const rv = $('#rv');
+  if (rv) rv.innerHTML = REVIEWS.length ? REVIEWS.map(x => `<div class="card"><div class="pr"><span>${'★'.repeat(x.r || 5)}</span><span>${esc(x.d || '')}</span></div><p style="color:var(--tx)">${esc(x.t)}</p><b>${esc(x.n)}</b></div>`).join('') : '<div class="card"><h3>Здесь появятся отзывы клиентов</h3><p style="margin:10px 0 0">Станьте первым — оставьте отзыв ниже.</p></div>';
+  const rf = $('#rf');
+  if (rf) rf.onsubmit = e => {
+    e.preventDefault();
+    const v = Object.fromEntries(new FormData(rf)); if (v.site) return;
+    if (!v.name.trim() || v.text.trim().length < 10) return say($('#rs'), 'Укажите имя и напишите отзыв (от 10 символов).', 1);
+    go($('button', rf), $('#rs'), { name: v.name, message: `Новый отзыв (на модерацию)\nИмя: ${v.name}\nОценка: ${v.rate}/5\n${v.text}` });
   };
 });
