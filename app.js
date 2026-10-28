@@ -103,3 +103,37 @@ document.addEventListener('DOMContentLoaded', () => {
   const end = () => { it.classList.add('off'); setTimeout(() => it.remove(), 900); };
   $('#sk').onclick = end; setTimeout(end, 5200);
 });
+// Логика для мобильного меню и выпадающего списка
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const navLinks = document.getElementById('nav-links');
+    const dropdowns = document.querySelectorAll('.dropdown');
+
+    // 1. Открытие/закрытие мобильного меню (бургер)
+    if (mobileMenuBtn && navLinks) {
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            // Меняем иконку с ☰ на ✕
+            if(navLinks.classList.contains('active')){
+                mobileMenuBtn.innerHTML = '✕';
+            } else {
+                mobileMenuBtn.innerHTML = '☰';
+            }
+        });
+    }
+
+    // 2. Клик по пункту "Услуги" на телефоне
+    dropdowns.forEach(dropdown => {
+        const dropbtn = dropdown.querySelector('.dropbtn');
+        
+        if (dropbtn) {
+            dropbtn.addEventListener('click', function(e) {
+                // Если экран маленький (телефон)
+                if (window.innerWidth <= 768) {
+                    e.preventDefault(); // Блокируем переход по ссылке
+                    dropdown.classList.toggle('active'); // Открываем/закрываем список
+                }
+            });
+        }
+    });
+});
