@@ -101,3 +101,72 @@ footer{border-top:1px solid var(--ln);padding:56px 0 32px;margin-top:40px}
 .cn{display:flex;gap:10px;align-items:flex-start;font-size:.82rem;color:var(--mu);margin:16px 0 0;line-height:1.4}.cn input{width:auto;margin-top:2px;flex:none}.cn a{text-decoration:underline;color:var(--ac2)}
 footer{padding-bottom:100px}
 .lg h3{margin:28px 0 8px}.lg p{margin-bottom:10px;max-width:760px}
+/* --- СТИЛИ ДЛЯ ВЫПАДАЮЩЕГО МЕНЮ --- */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #1a1a1a; /* Темный фон под стиль сайта */
+    min-width: 180px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+    z-index: 1000;
+    border-radius: 8px;
+    top: 100%;
+    left: 0;
+    border: 1px solid #333;
+}
+
+.dropdown-content a {
+    color: #fff;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 15px;
+    transition: background 0.2s;
+}
+
+.dropdown-content a:hover {
+    background-color: #333;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* --- МОБИЛЬНАЯ ВЕРСИЯ (Для телефонов) --- */
+@media (max-width: 768px) {
+    .links.active {
+        display: flex; /* Показываем меню при клике на бургер */
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px; /* Чуть ниже шапки */
+        left: 0;
+        background-color: #1a1a1a;
+        padding: 15px 0;
+        z-index: 999;
+    }
+
+    .dropdown-content {
+        position: static; /* На телефоне меню будет раскрываться вниз */
+        box-shadow: none;
+        border: none;
+        background-color: #252525;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: none; /* Отключаем наведение на телефонах */
+    }
+
+    .dropdown.active .dropdown-content {
+        display: block; /* Открываем по клику */
+    }
+}
