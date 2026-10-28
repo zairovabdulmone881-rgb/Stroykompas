@@ -1,95 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url>
-<loc>https://stroykompassonline.ru/</loc>
-<lastmod>2026-10-29T04:21:27+05:00</lastmod>
-</url>
-<url>
-<loc>https://stroykompassonline.ru/about.html</loc>
-<lastmod>2026-10-29T04:21:27+05:00</lastmod>
-</url>
-<url>
-<loc>https://stroykompassonline.ru/calculator.html</loc>
-<lastmod>2026-10-29T04:21:27+05:00</lastmod>
-</url>
-<url>
-<loc>https://stroykompassonline.ru/ceiling.html</loc>
-<lastmod>2026-10-29T04:21:27+05:00</lastmod>
-</url>
-<url>
-<loc>https://stroykompassonline.ru/contacts.html</loc>
-<lastmod>2026-10-29T04:21:27+05:00</lastmod>
-</url>
-<url>
-<loc>https://stroykompassonline.ru/cosmetic.html</loc>
-<lastmod>2026-10-29T04:21:27+05:00</lastmod>
-</url>
-<url>
-<loc>https://stroykompassonline.ru/electrical.html</loc>
-<lastmod>2026-10-29T04:21:27+05:00</lastmod>
-</url>
-<url>
-<loc>https://stroykompassonline.ru/gkl.html</loc>
-<lastmod>2026-10-29T04:21:27+05:00</lastmod>
-</url>
-<url>
-<loc>https://stroykompassonline.ru/laminate.html</loc>
-<lastmod>2026-10-29T04:21:27+05:00</lastmod>
-</url>
-<url>
-<loc>https://stroykompassonline.ru/level.html</loc>
-<lastmod>2026-10-29T04:21:27+05:00</lastmod>
-</url>
-<url>
-<loc>https://stroykompassonline.ru/painting.html</loc>
-<lastmod>2026-10-29T04:21:27+05:00</lastmod>
-</url>
-<url>
-<loc>https://stroykompassonline.ru/plaster.html</loc>
-<lastmod>2026-10-29T04:21:27+05:00</lastmod>
-</url>
-<url>
-<loc>https://stroykompassonline.ru/plumbing.html</loc>
-<lastmod>2026-10-29T04:21:27+05:00</lastmod>
-</url>
-<url>
-<loc>https://stroykompassonline.ru/privacy.html</loc>
-<lastmod>2026-10-29T04:21:27+05:00</lastmod>
-</url>
-<url>
-<loc>https://stroykompassonline.ru/projects.html</loc>
-<lastmod>2026-10-29T04:21:27+05:00</lastmod>
-</url>
-<url>
-<loc>https://stroykompassonline.ru/reviews.html</loc>
-<lastmod>2026-10-29T04:21:27+05:00</lastmod>
-</url>
-<url>
-<loc>https://stroykompassonline.ru/screed.html</loc>
-<lastmod>2026-10-29T04:21:27+05:00</lastmod>
-</url>
-<url>
-<loc>https://stroykompassonline.ru/services.html</loc>
-<lastmod>2026-10-29T04:21:27+05:00</lastmod>
-</url>
-<url>
-<loc>https://stroykompassonline.ru/stroy_kompas_redesign.html</loc>
-<lastmod>2026-10-29T04:21:27+05:00</lastmod>
-</url>
-<url>
-<loc>https://stroykompassonline.ru/tiling.html</loc>
-<lastmod>2026-10-29T04:21:27+05:00</lastmod>
-</url>
-<url>
-<loc>https://stroykompassonline.ru/wallpaper.html</loc>
-<lastmod>2026-10-29T04:21:27+05:00</lastmod>
-</url>
-<url>
-<loc>https://stroykompassonline.ru/yandex_dacec8d8a1170b06.html</loc>
-<lastmod>2026-10-29T04:21:27+05:00</lastmod>
-</url>
-<url>
-<loc>https://stroykompassonline.ru/calculator/</loc>
-<lastmod>2026-10-29T04:21:27+05:00</lastmod>
-</url>
+    <url>
+        <loc>https://stroykompassonline.ru/</loc>
+        <lastmod>2026-10-29T04:19:46+05:00</lastmod>
+    </url>
+    <url>
+        <loc>https://stroykompassonline.ru/about.html</loc>
+        <lastmod>2026-10-29T04:19:46+05:00</lastmod>
+    </url>
+    <url>
+        <loc>https://stroykompassonline.ru/calculator.html</loc>
+        <lastmod>2026-10-29T04:19:46+05:00</lastmod>
+    </url>
+    <url>
+        <loc>https://stroykompassonline.ru/ceiling.html</loc>
+        <lastmod>2026-10-29T04:19:46+05:00</lastmod>
+    </url>
+    <url>
+        <loc>https://stroykompassonline.ru/contacts.html</loc>
+        <lastmod>2026-10-29T04:19:46+05:00</lastmod>
+    </url>
+    <url>
+        <loc>https://stroykompassonline.ru/cosmetic.html</loc>
+        <lastmod>2026-10-29T04:19:46+05:00</lastmod>
+    </url>
+    <url>
+        <loc>https://stroykompassonline.ru/electrical.html</loc>
+        <lastmod>2026-10-29T04:19:46+05:00</lastmod>
+    </url>
+    <url>
+        <loc>https://stroykompassonline.ru/gkl.html</loc>
+        <lastmod>2026-10-29T04:19:46+05:00</lastmod>
+    </url>
+    <url>
+        <loc>https://stroykompassonline.ru/laminate.html</loc>
+        <lastmod>2026-10-29T04:19:46+05:00</lastmod>
+    </url>
+    <url>
+        <loc>https://stroykompassonline.ru/level.html</loc>
+        <lastmod>2026-10-29T04:19:46+05:00</lastmod>
+    </url>
+    <url>
+        <loc>https://stroykompassonline.ru/painting.html</loc>
+        <lastmod>2026-10-29T04:19:46+05:00</lastmod>
+    </url>
+    <url>
+        <loc>https://stroykompassonline.ru/plaster.html</loc>
+        <lastmod>2026-10-29T04:19:46+05:00</lastmod>
+    </url>
+    <url>
+        <loc>https://stroykompassonline.ru/plumbing.html</loc>
+        <lastmod>2026-10-29T04:19:46+05:00</lastmod>
+    </url>
+    <url>
+        <loc>https://stroykompassonline.ru/privacy.html</loc>
+        <lastmod>2026-10-29T04:19:46+05:00</lastmod>
+    </url>
+    <url>
+        <loc>https://stroykompassonline.ru/projects.html</loc>
+        <lastmod>2026-10-29T04:19:46+05:00</lastmod>
+    </url>
+    <url>
+        <loc>https://stroykompassonline.ru/reviews.html</loc>
+        <lastmod>2026-10-29T04:19:46+05:00</lastmod>
+    </url>
+    <url>
+        <loc>https://stroykompassonline.ru/screed.html</loc>
+        <lastmod>2026-10-29T04:19:46+05:00</lastmod>
+    </url>
+    <url>
+        <loc>https://stroykompassonline.ru/services.html</loc>
+        <lastmod>2026-10-29T04:19:46+05:00</lastmod>
+    </url>
+    <url>
+        <loc>https://stroykompassonline.ru/tiling.html</loc>
+        <lastmod>2026-10-29T04:19:46+05:00</lastmod>
+    </url>
+    <url>
+        <loc>https://stroykompassonline.ru/wallpaper.html</loc>
+        <lastmod>2026-10-29T04:19:46+05:00</lastmod>
+    </url>
 </urlset>
