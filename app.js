@@ -137,3 +137,29 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+// Логика фильтрации портфолио
+document.addEventListener('DOMContentLoaded', function() {
+    const filterBtns = document.querySelectorAll('.f-btn');
+    const portfolioItems = document.querySelectorAll('.p-item');
+
+    if (filterBtns.length > 0) {
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Убираем активный класс со всех кнопок
+                filterBtns.forEach(b => b.classList.remove('on'));
+                // Добавляем на нажатую
+                this.classList.add('on');
+
+                const filterValue = this.getAttribute('data-filter');
+
+                portfolioItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    }
+});
