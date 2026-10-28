@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Наши проекты и выполненные работы | Строй Компас</title>
+    <meta name="description" content="Портфолио выполненных работ Строй Компас в Ханты-Мансийске: ремонт, отделка, укладка плитки, малярные работы.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="w">
+            <div class="nav">
+                <a class="brand" href="index.html">СТРОЙ <b>КОМПАС</b></a>
+                <nav class="links" id="nav-links" aria-label="Меню">
+                    <a href="index.html">Главная</a>
+                    <div class="dropdown">
+                        <a href="services.html" class="dropbtn">Услуги ▾</a>
+                        <div class="dropdown-content">
+                            <a href="ceiling.html">Потолки</a>
+                            <a href="tiling.html">Плитка</a>
+                            <a href="electrical.html">Электрика</a>
+                            <a href="plumbing.html">Сантехника</a>
+                            <a href="painting.html">Малярные работы</a>
+                            <a href="plaster.html">Штукатурка</a>
+                            <a href="laminate.html">Ламинат</a>
+                            <a href="wallpaper.html">Обои</a>
+                        </div>
+                    </div>
+                    <a href="calculator.html">Калькулятор</a>
+                    <a href="about.html">О нас</a>
+                    <a href="projects.html" class="on">Проекты</a> <!-- Добавили в меню -->
+                    <a href="reviews.html">Отзывы</a>
+                    <a href="contacts.html">Контакты</a>
+                </nav>
+                <a class="btn s" href="contacts.html">Консультация</a>
+                <button class="burger" id="mobile-menu-btn" aria-label="Меню" aria-expanded="false">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="sec">
+            <div class="w">
+                <div class="sh" style="text-align: center; margin-bottom: 30px;">
+                    <h1>Наши выполненные работы</h1>
+                    <p>Реальные проекты, которые мы реализовали в Ханты-Мансийске.</p>
+                </div>
+
+                <!-- Кнопки фильтров -->
+                <div class="filter-btns">
+                    <button class="f-btn on" data-filter="all">Все работы</button>
+                    <button class="f-btn" data-filter="painting">Малярные</button>
+                    <button class="f-btn" data-filter="tiling">Плитка</button>
+                    <button class="f-btn" data-filter="electrical">Электрика</button>
+                </div>
+
+                <!-- Сетка проектов -->
+                <div class="portfolio-grid">
+                    <!-- Проект 1 -->
+                    <div class="p-item" data-category="painting">
+                        <div class="p-img" style="background-color: #333; height: 200px; display: flex; align-items: center; justify-content: center; color: #fff;">
+                            <!-- Замените стиль выше на реальную картинку: style="background-image: url('images/rabota1.jpg');" -->
+                            Фото работы 1
+                        </div>
+                        <h3>Покраска стен в новостройке</h3>
+                        <p>г. Ханты-Мансийск, 2-комн. квартира, 60 м²</p>
+                    </div>
+
+                    <!-- Проект 2 -->
+                    <div class="p-item" data-category="tiling">
+                        <div class="p-img" style="background-color: #333; height: 200px; display: flex; align-items: center; justify-content: center; color: #fff;">
+                            Фото работы 2
+                        </div>
+                        <h3>Укладка плитки в ванной</h3>
+                        <p>г. Ханты-Мансийск, ул. Мира, 15 м²</p>
+                    </div>
+
+                    <!-- Проект 3 -->
+                    <div class="p-item" data-category="electrical">
+                        <div class="p-img" style="background-color: #333; height: 200px; display: flex; align-items: center; justify-content: center; color: #fff;">
+                            Фото работы 3
+                        </div>
+                        <h3>Монтаж электрики в доме</h3>
+                        <p>Загородный дом, 120 м²</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="w">
+            <div class="cp">© <span id="yr"></span> Строй Компас · Ханты-Мансийск</div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
