@@ -170,3 +170,51 @@ footer{padding-bottom:100px}
         display: block; /* Открываем по клику */
     }
 }
+/* --- СТИЛИ ДЛЯ ПОРТФОЛИО --- */
+.filter-btns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+.f-btn {
+    background: transparent;
+    border: 1px solid #c29b62; /* Ваш золотой/песочный цвет */
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.3s;
+}
+.f-btn.on, .f-btn:hover {
+    background: #c29b62;
+    color: #111;
+}
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+.p-item {
+    background: #1a1a1a;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #333;
+    transition: transform 0.3s;
+}
+.p-item:hover {
+    transform: translateY(-5px);
+}
+.p-item h3 {
+    padding: 15px 15px 5px;
+    margin: 0;
+    font-size: 18px;
+}
+.p-item p {
+    padding: 0 15px 15px;
+    margin: 0;
+    color: #888;
+    font-size: 14px;
+}
