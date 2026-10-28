@@ -1,0 +1,23 @@
+name: Generate Sitemap
+on:
+  push:
+    branches: [ "main" ]
+permissions:
+  contents: write
+jobs:
+  generate-sitemap:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate Sitemap
+        uses: cicirello/generate-sitemap@v1
+        with:
+          base-url-path: https://stroykompassonline.ru
+          include-pdfs: false
+      - name: Commit and Push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add sitemap.xml
+          git commit -m "Update sitemap.xml" || exit 0
+          git push
